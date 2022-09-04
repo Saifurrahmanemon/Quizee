@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "jest": true
+        "jest": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
@@ -43,7 +44,8 @@
             "error",
             "single"
         ],
-        "no-duplicate-imports": "error"
+        "no-duplicate-imports": "error",
+        "@typescript-eslint/no-var-requires": "off"
     },
     "settings": {
         "import/resolver": {
