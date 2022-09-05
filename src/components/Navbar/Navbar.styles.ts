@@ -7,7 +7,7 @@ export const useStyles = createStyles((theme) => ({
       borderBottom: `1px solid ${
          theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background
       }`,
-      marginBottom: 150,
+      marginBottom: 10,
    },
 
    mainSection: {
