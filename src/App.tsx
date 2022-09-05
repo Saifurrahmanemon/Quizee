@@ -1,12 +1,12 @@
 import { MantineProvider } from '@mantine/core';
-import Banner from './components/Banner';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
 
 function App() {
    return (
       <MantineProvider withGlobalStyles withNormalizeCSS>
          <Navbar />
-         <Banner />
+         <Home />
       </MantineProvider>
    );
 }

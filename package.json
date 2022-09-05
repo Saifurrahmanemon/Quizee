@@ -1,68 +1,78 @@
 {
-  "name": "quiz-app",
-  "version": "0.1.0",
-  "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@mantine/core": "^5.2.4",
-    "@mantine/form": "^5.2.4",
-    "@mantine/hooks": "^5.2.4",
-    "@mantine/notifications": "^5.2.4",
-    "@tabler/icons": "^1.92.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "firebase": "^9.9.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-firebase-hooks": "^5.0.3",
-    "react-router-dom": "6",
-    "react-scripts": "5.0.1",
-    "tabler-icons-react": "^1.54.0",
-    "typescript": "*",
-    "web-vitals": "^2.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
-    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "eslint": "^8.0.1",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard-with-typescript": "^22.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.31.4",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.7.1"
-  }
+   "name": "quiz-app",
+   "version": "0.1.0",
+   "dependencies": {
+      "@emotion/react": "^11.10.4",
+      "@mantine/core": "^5.2.4",
+      "@mantine/form": "^5.2.4",
+      "@mantine/hooks": "^5.2.4",
+      "@mantine/notifications": "^5.2.4",
+      "@tabler/icons": "^1.92.0",
+      "@testing-library/jest-dom": "^5.14.1",
+      "@testing-library/react": "^13.0.0",
+      "@testing-library/user-event": "^13.2.1",
+      "@types/jest": "^27.0.1",
+      "@types/node": "^16.7.13",
+      "@types/react": "^18.0.0",
+      "@types/react-dom": "^18.0.0",
+      "firebase": "^9.9.4",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "react-firebase-hooks": "^5.0.3",
+      "react-router-dom": "6",
+      "react-scripts": "5.0.1",
+      "tabler-icons-react": "^1.54.0",
+      "typescript": "*",
+      "web-vitals": "^2.1.0"
+   },
+   "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject",
+      "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+      "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+      "format": "prettier --write ."
+   },
+   "eslintConfig": {
+      "extends": [
+         "react-app",
+         "react-app/jest"
+      ]
+   },
+   "browserslist": {
+      "production": [
+         ">0.2%",
+         "not dead",
+         "not op_mini all"
+      ],
+      "development": [
+         "last 1 chrome version",
+         "last 1 firefox version",
+         "last 1 safari version"
+      ]
+   },
+   "devDependencies": {
+      "@typescript-eslint/eslint-plugin": "^5.0.0",
+      "eslint": "^8.0.1",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-config-standard-with-typescript": "^22.0.0",
+      "eslint-plugin-import": "^2.25.2",
+      "eslint-plugin-n": "^15.0.0",
+      "eslint-plugin-prettier": "^4.2.1",
+      "eslint-plugin-promise": "^6.0.0",
+      "eslint-plugin-react": "^7.31.4",
+      "eslint-plugin-react-hooks": "^4.6.0",
+      "husky": "^8.0.1",
+      "lint-staged": "^13.0.3",
+      "prettier": "2.7.1"
+   },
+   "husky": {
+      "hooks": {
+         "pre-commit": "lint-staged"
+      }
+   },
+   "lint-staged": {
+      "**/*": "prettier --write --ignore-unknown"
+   }
 }
