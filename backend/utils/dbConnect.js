@@ -1,13 +1,13 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
-function dbConnect() {
-   //  const uri = process.env.MONGO_URI;
-   //  const client = new MongoClient(uri, {
-   //     useNewUrlParser: true,
-   //     useUnifiedTopology: true,
-   //     serverApi: ServerApiVersion.v1,
-   //  });
-   console.log('MongoDB connected');
-}
+const mongoose = require('mongoose');
+const dbConnect = async () => {
+   const uri = process.env.MONGO_URI;
+   try {
+      const conn = await mongoose.connect(uri);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+   } catch (error) {
+      console.log(error);
+      process.exit(1);
+   }
+};
 
 module.exports = dbConnect;

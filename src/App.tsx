@@ -1,8 +1,11 @@
+import { MantineProvider } from '@mantine/core';
+import { Navbar } from './components/Navbar';
+
 function App() {
    return (
-      <div>
-         <h1>hello world</h1>
-      </div>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+         <Navbar />
+      </MantineProvider>
    );
 }
 
