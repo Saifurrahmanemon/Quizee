@@ -1,12 +1,12 @@
 import { MantineProvider } from '@mantine/core';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
+import Router from './routes';
 
 function App() {
    return (
       <MantineProvider withGlobalStyles withNormalizeCSS>
          <Navbar />
-         <Home />
+         <Router />
       </MantineProvider>
    );
 }

@@ -5,12 +5,24 @@ export const user = {
 };
 
 export const tabs = [
-   'Home',
-   'Orders',
-   'Education',
-   'Community',
-   'Forums',
-   'Support',
-   'Account',
-   'Helpdesk',
+   {
+      value: 'Home',
+      link: '/',
+   },
+   {
+      value: 'Register',
+      link: '/',
+   },
+   {
+      value: 'Education',
+      link: '/',
+   },
+   {
+      value: 'Community',
+      link: '/',
+   },
+   {
+      value: 'Support',
+      link: '/',
+   },
 ];
