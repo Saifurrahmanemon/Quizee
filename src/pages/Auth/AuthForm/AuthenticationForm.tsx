@@ -15,7 +15,6 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { upperFirst, useToggle } from '@mantine/hooks';
-import { User, UserCredential } from 'firebase/auth';
 import { useEffect } from 'react';
 import {
    useCreateUserWithEmailAndPassword,
@@ -33,34 +32,34 @@ type FormProps = {
    name?: string;
    password: string;
 };
-interface UserType extends User {
-   user: UserCredential;
+
+interface LocationTypes {
+   from: { pathname: string };
+   myState: string;
 }
 
 function AuthenticationForm(props: PaperProps) {
    const [type, toggle] = useToggle(['register', 'login']);
-   const [signInWithGoogle, user, loadingGoogle] = useSignInWithGoogle(auth);
-   const [createUserWithEmailAndPassword, loadingSignUp, errorSignUp] =
+   const [signInWithGoogle, googleUser, loadingGoogle] = useSignInWithGoogle(auth);
+   const [createUserWithEmailAndPassword, signUpUser, loadingSignUp, errorSignUp] =
       useCreateUserWithEmailAndPassword(auth);
    const [updateProfile] = useUpdateProfile(auth);
-   const [signInWithEmailAndPassword, loadingLogin, errorLogin] =
+   const [signInWithEmailAndPassword, loginUser, loadingLogin, errorLogin] =
       useSignInWithEmailAndPassword(auth);
-
-   const [token] = useToken(user);
+   const [token] = useToken(googleUser || signUpUser || loginUser);
    console.log(token);
 
    const navigate = useNavigate();
 
    // did not find type for this one in react router might see later
-   const location: any = useLocation();
-
-   const from = location.state?.from?.pathname || '/';
+   const myState = useLocation().state as LocationTypes;
+   const from = myState?.from?.pathname || '/';
 
    useEffect(() => {
-      if (user) {
+      if (token) {
          navigate(from, { replace: true });
       }
-   }, [from, navigate, user]);
+   }, [from, navigate, token]);
 
    console.log('Sign up Error', errorSignUp, 'Login Error', errorLogin);
 

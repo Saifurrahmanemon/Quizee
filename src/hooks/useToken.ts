@@ -3,7 +3,7 @@ import { UserCredential } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { TEST_URL } from '../api/Api';
 
-type UserProps = UserCredential | undefined;
+type UserProps = UserCredential | null | undefined;
 
 const useToken = (user: UserProps) => {
    const [token, setToken] = useState('');
