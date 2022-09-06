@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const dbConnect = require('./utils/dbconnect');
 require('dotenv').config();
 const quizesRoutes = require('./routes/v1/quizes.route');
-
+const usersRoutes = require('./routes/v1/users.route');
 const port = process.env.PORT || 5000;
 
 const app = express();
@@ -16,6 +16,7 @@ app.use(express.json());
 dbConnect();
 
 app.use('/api/v1/quizes', quizesRoutes);
+app.use('/api/v1/users', usersRoutes);
 
 // run server
 

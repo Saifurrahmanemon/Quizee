@@ -15,9 +15,9 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { upperFirst, useToggle } from '@mantine/hooks';
+import { User, UserCredential } from 'firebase/auth';
 import { useEffect } from 'react';
 import {
-   useAuthState,
    useCreateUserWithEmailAndPassword,
    useSignInWithEmailAndPassword,
    useSignInWithGoogle,
@@ -26,22 +26,28 @@ import {
 import { useLocation, useNavigate } from 'react-router-dom';
 import GoogleButton from '../../../components/SocialButtons';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 
 type FormProps = {
    email: string;
    name?: string;
    password: string;
 };
+interface UserType extends User {
+   user: UserCredential;
+}
 
 function AuthenticationForm(props: PaperProps) {
    const [type, toggle] = useToggle(['register', 'login']);
-   const [signInWithGoogle, loadingGoogle] = useSignInWithGoogle(auth);
+   const [signInWithGoogle, user, loadingGoogle] = useSignInWithGoogle(auth);
    const [createUserWithEmailAndPassword, loadingSignUp, errorSignUp] =
       useCreateUserWithEmailAndPassword(auth);
    const [updateProfile] = useUpdateProfile(auth);
    const [signInWithEmailAndPassword, loadingLogin, errorLogin] =
       useSignInWithEmailAndPassword(auth);
-   const [user] = useAuthState(auth);
+
+   const [token] = useToken(user);
+   console.log(token);
 
    const navigate = useNavigate();
 
