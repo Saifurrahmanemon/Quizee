@@ -10,8 +10,8 @@ export const tabs = [
       link: '/',
    },
    {
-      value: 'Register',
-      link: '/',
+      value: 'Quizes',
+      link: '/quizes',
    },
    {
       value: 'Education',

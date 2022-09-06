@@ -1,19 +1,9 @@
-import {
-   ActionIcon,
-   Avatar,
-   Burger,
-   Container,
-   Group,
-   Menu,
-   Tabs,
-   Text,
-   UnstyledButton,
-} from '@mantine/core';
+import { Avatar, Burger, Container, Group, Menu, Tabs, Text, UnstyledButton } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useState } from 'react';
+import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { Logout } from 'tabler-icons-react';
+import { Login, Logout } from 'tabler-icons-react';
 import quizeLogo from '../../assets/svg/quizelogo.svg';
 import auth from '../../firebase.init';
 import { useStyles } from './Navbar.styles';
@@ -22,10 +12,9 @@ import { tabs } from './util';
 function Navbar() {
    const { classes, theme, cx } = useStyles();
    const [opened, { toggle }] = useDisclosure(false);
-   const [userMenuOpened, setUserMenuOpened] = useState(false);
+
    const navigate = useNavigate();
    const [user] = useAuthState(auth);
-   console.log(user);
 
    const items = tabs.map((tab) => (
       <Tabs.Tab value={tab.value} key={tab.value}>
@@ -33,10 +22,10 @@ function Navbar() {
       </Tabs.Tab>
    ));
 
-   const signoutUser = user && (
-      <ActionIcon variant='light' color='blue'>
-         <Logout color='red' strokeOpacity={1} />
-      </ActionIcon>
+   const signoutUser = user ? (
+      <Logout onClick={() => signOut(auth)} className={classes.logout} strokeOpacity={1} />
+   ) : (
+      <Login onClick={() => navigate('/register')} className={classes.login} strokeOpacity={1} />
    );
 
    return (
@@ -55,9 +44,7 @@ function Navbar() {
                <Menu width={240} position='bottom-end' transition='pop-top-right'>
                   {signoutUser}
                   <Menu.Target>
-                     <UnstyledButton
-                        className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
-                     >
+                     <UnstyledButton className={cx(classes.user)}>
                         <Group spacing={7}>
                            <Avatar
                               src={user?.photoURL}

@@ -15,14 +15,50 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { upperFirst, useToggle } from '@mantine/hooks';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useEffect } from 'react';
+import {
+   useAuthState,
+   useCreateUserWithEmailAndPassword,
+   useSignInWithEmailAndPassword,
+   useSignInWithGoogle,
+   useUpdateProfile,
+} from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import GoogleButton from '../../../components/SocialButtons';
 import auth from '../../../firebase.init';
 
-function AuthenticationForm(props: PaperProps) {
-   const [type, toggle] = useToggle(['login', 'register']);
-   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+type FormProps = {
+   email: string;
+   name?: string;
+   password: string;
+};
 
+function AuthenticationForm(props: PaperProps) {
+   const [type, toggle] = useToggle(['register', 'login']);
+   const [signInWithGoogle, loadingGoogle] = useSignInWithGoogle(auth);
+   const [createUserWithEmailAndPassword, loadingSignUp, errorSignUp] =
+      useCreateUserWithEmailAndPassword(auth);
+   const [updateProfile] = useUpdateProfile(auth);
+   const [signInWithEmailAndPassword, loadingLogin, errorLogin] =
+      useSignInWithEmailAndPassword(auth);
+   const [user] = useAuthState(auth);
+
+   const navigate = useNavigate();
+
+   // did not find type for this one in react router might see later
+   const location: any = useLocation();
+
+   const from = location.state?.from?.pathname || '/';
+
+   useEffect(() => {
+      if (user) {
+         navigate(from, { replace: true });
+      }
+   }, [from, navigate, user]);
+
+   console.log('Sign up Error', errorSignUp, 'Login Error', errorLogin);
+
+   // 🔑 for form validation 🔑
    const form = useForm({
       initialValues: {
          email: '',
@@ -31,22 +67,39 @@ function AuthenticationForm(props: PaperProps) {
          terms: true,
       },
 
-      validate: {
-         email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
-         password: (val) =>
-            val.length <= 6 ? 'Password should include at least 6 characters' : null,
-      },
+      validate: ({ name, email, password }) => ({
+         name: name.length < 3 ? 'Too short name' : null,
+         email: /^\S+@\S+$/.test(email) ? null : 'Please Provide a valid email',
+         password: password.length < 6 ? 'Password should include at least 6 characters' : null,
+      }),
    });
 
-   const submitButton = loading ? <Loader /> : <Button type='submit'>{upperFirst(type)}</Button>;
+   const handleSignUpOnSubmit = async ({ name, password, email }: FormProps) => {
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ displayName: name });
+   };
 
-   const submitGoogleButton = loading ? (
-      <Loader />
-   ) : (
-      <GoogleButton onClick={() => signInWithGoogle()} radius='xl'>
-         Google
-      </GoogleButton>
-   );
+   const handleLoginOnSubmit = async ({ email, password }: FormProps) => {
+      await signInWithEmailAndPassword(email, password);
+   };
+
+   const submitButton =
+      loadingGoogle || loadingSignUp || loadingLogin ? (
+         <Loader />
+      ) : (
+         <Button type='submit'>{upperFirst(type)}</Button>
+      );
+
+   const submitGoogleButton =
+      loadingGoogle || loadingSignUp || loadingLogin ? (
+         <Loader />
+      ) : (
+         <GoogleButton onClick={() => signInWithGoogle()} radius='xl'>
+            Google
+         </GoogleButton>
+      );
+
+   const handleAuthOnSubmit = type === 'login' ? handleLoginOnSubmit : handleSignUpOnSubmit;
 
    return (
       <Container size={500} my={40}>
@@ -61,11 +114,7 @@ function AuthenticationForm(props: PaperProps) {
 
             <Divider label='Or continue with email' labelPosition='center' my='lg' />
 
-            <form
-               onSubmit={form.onSubmit(() => {
-                  'helo';
-               })}
-            >
+            <form onSubmit={form.onSubmit(handleAuthOnSubmit)}>
                <Stack>
                   {type === 'register' && (
                      <TextInput

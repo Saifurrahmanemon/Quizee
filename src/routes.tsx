@@ -1,4 +1,5 @@
 import { useRoutes } from 'react-router-dom';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 import AuthenticationForm from './pages/Auth/';
 import Home from './pages/Home';
 
@@ -12,6 +13,14 @@ const Router = () => {
       {
          path: '/home',
          element: <Home />,
+      },
+      {
+         path: '/quizes',
+         element: (
+            <RequireAuth>
+               <Home />
+            </RequireAuth>
+         ),
       },
       {
          path: '/register',

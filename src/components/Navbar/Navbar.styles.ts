@@ -60,6 +60,15 @@ export const useStyles = createStyles((theme) => ({
       marginLeft: theme.spacing.sm,
    },
 
+   logout: {
+      cursor: 'pointer',
+      color: theme.colors.red[9],
+   },
+   login: {
+      cursor: 'pointer',
+      color: theme.white,
+   },
+
    tab: {
       fontWeight: 500,
       height: 38,
