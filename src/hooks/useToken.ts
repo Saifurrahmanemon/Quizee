@@ -3,7 +3,7 @@ import { UserCredential } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { TEST_URL } from '../api/Api';
 
-type UserProps = UserCredential | null | undefined;
+export type UserProps = UserCredential | null | undefined;
 
 const useToken = (user: UserProps) => {
    const [token, setToken] = useState('');
@@ -12,7 +12,6 @@ const useToken = (user: UserProps) => {
       const getToken = async () => {
          const info = user?.user;
          const email = info?.email;
-         console.log(email);
          const userInfo = {
             email,
             name: info?.displayName,
