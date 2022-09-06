@@ -7,7 +7,7 @@ export const useStyles = createStyles((theme) => ({
       borderBottom: `1px solid ${
          theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background
       }`,
-      marginBottom: 150,
+      marginBottom: 10,
    },
 
    mainSection: {
@@ -58,6 +58,15 @@ export const useStyles = createStyles((theme) => ({
    },
    logo: {
       marginLeft: theme.spacing.sm,
+   },
+
+   logout: {
+      cursor: 'pointer',
+      color: theme.colors.red[9],
+   },
+   login: {
+      cursor: 'pointer',
+      color: theme.white,
    },
 
    tab: {
