@@ -4,17 +4,20 @@ import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Login, Logout } from 'tabler-icons-react';
-import quizeLogo from '../../assets/svg/quizelogo.svg';
+import QuizeLogo from '../../assets/svg/quizelogo.svg';
 import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 import { useStyles } from './Navbar.styles';
 import { tabs } from './util';
 
 function Navbar() {
    const { classes, theme, cx } = useStyles();
    const [opened, { toggle }] = useDisclosure(false);
+   const [user] = useAuthState(auth);
+   const [admin] = useAdmin(user);
+   console.log(admin);
 
    const navigate = useNavigate();
-   const [user] = useAuthState(auth);
 
    const items = tabs.map((tab) => (
       <Tabs.Tab value={tab.value} key={tab.value}>
@@ -31,7 +34,7 @@ function Navbar() {
    return (
       <div className={classes.header}>
          <Container className={classes.mainSection}>
-            <img src={quizeLogo} className={classes.logo} alt='' />
+            <img src={QuizeLogo} className={classes.logo} alt='' />
             <Group position='apart'>
                <Burger
                   opened={opened}

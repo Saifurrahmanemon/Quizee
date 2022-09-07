@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 
 module.exports.getAllUsers = asyncHandler(async (req, res) => {
    const users = await Users.find();
-   console.log(users);
    res.send(users);
 });
 

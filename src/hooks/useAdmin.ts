@@ -8,18 +8,22 @@ type AdminProps = User | null | undefined;
 const useAdmin = (user: AdminProps) => {
    const [admin, setAdmin] = useState(false);
    const [adminLoading, setAdminLoading] = useState(true);
+   console.log('from useAdmin', admin);
 
    useEffect(() => {
       const getAdmin = async () => {
          const email = user?.email;
          if (email) {
-            const res = await axios.get(`${TEST_URL}/admin/${email}`);
+            const res = await axios.get(`${TEST_URL}/admins/${email}`);
 
             if (res.status === 200) {
-               console.log(res.data);
                setAdmin(res.data.admin);
-               setAdminLoading(false);
             }
+            setAdminLoading(false);
+         }
+         if (!email) {
+            console.log('please log in');
+            setAdminLoading(false);
          }
       };
 

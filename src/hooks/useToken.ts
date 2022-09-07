@@ -19,7 +19,6 @@ const useToken = (user: UserProps) => {
 
          if (email) {
             const res = await axios.put(`${TEST_URL}/users/${email}`, userInfo);
-            console.log(res);
             // set token to state to get access
             setToken(res.data.accessToken);
             localStorage.setItem('accessToken', res.data.accessToken);
