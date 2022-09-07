@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { TEST_URL } from '../api/Api';
 
-const useAdmin = (user: any) => {
+type AdminProps = User | null | undefined;
+
+const useAdmin = (user: AdminProps) => {
    const [admin, setAdmin] = useState(false);
    const [adminLoading, setAdminLoading] = useState(true);
 

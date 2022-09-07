@@ -11,7 +11,6 @@ module.exports.getAllUsers = asyncHandler(async (req, res) => {
 module.exports.postAUser = asyncHandler(async (req, res) => {
    const user = req.body;
    const email = req.params.email;
-
    const query = { email: email };
    const options = { upsert: true };
    const update = {
