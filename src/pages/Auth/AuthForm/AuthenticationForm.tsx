@@ -17,7 +17,6 @@ import { useForm } from '@mantine/form';
 import { upperFirst, useToggle } from '@mantine/hooks';
 import { useEffect } from 'react';
 import {
-   useAuthState,
    useCreateUserWithEmailAndPassword,
    useSignInWithEmailAndPassword,
    useSignInWithGoogle,
@@ -26,6 +25,7 @@ import {
 import { useLocation, useNavigate } from 'react-router-dom';
 import GoogleButton from '../../../components/SocialButtons';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 
 type FormProps = {
    email: string;
@@ -33,28 +33,33 @@ type FormProps = {
    password: string;
 };
 
+interface LocationTypes {
+   from: { pathname: string };
+   myState: string;
+}
+
 function AuthenticationForm(props: PaperProps) {
    const [type, toggle] = useToggle(['register', 'login']);
-   const [signInWithGoogle, loadingGoogle] = useSignInWithGoogle(auth);
-   const [createUserWithEmailAndPassword, loadingSignUp, errorSignUp] =
+   const [signInWithGoogle, googleUser, loadingGoogle] = useSignInWithGoogle(auth);
+   const [createUserWithEmailAndPassword, signUpUser, loadingSignUp, errorSignUp] =
       useCreateUserWithEmailAndPassword(auth);
    const [updateProfile] = useUpdateProfile(auth);
-   const [signInWithEmailAndPassword, loadingLogin, errorLogin] =
+   const [signInWithEmailAndPassword, loginUser, loadingLogin, errorLogin] =
       useSignInWithEmailAndPassword(auth);
-   const [user] = useAuthState(auth);
+   const [token] = useToken(googleUser || signUpUser || loginUser);
+   console.log(token);
 
    const navigate = useNavigate();
 
    // did not find type for this one in react router might see later
-   const location: any = useLocation();
-
-   const from = location.state?.from?.pathname || '/';
+   const myState = useLocation().state as LocationTypes;
+   const from = myState?.from?.pathname || '/';
 
    useEffect(() => {
-      if (user) {
+      if (token) {
          navigate(from, { replace: true });
       }
-   }, [from, navigate, user]);
+   }, [from, navigate, token]);
 
    console.log('Sign up Error', errorSignUp, 'Login Error', errorLogin);
 
