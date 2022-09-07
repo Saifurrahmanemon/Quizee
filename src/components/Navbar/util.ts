@@ -26,16 +26,20 @@ export const user = {
 
 export const adminTabs = [
    {
-      value: 'Manage Users',
-      link: '/manageusers',
+      value: 'home',
+      label: 'Home',
    },
    {
-      value: 'Create Quizes',
-      link: '/createquizes',
+      value: 'manageusers',
+      label: 'Manage Users',
    },
    {
-      value: 'Manage Quizes',
-      link: '/managequizes',
+      value: 'createquizes',
+      label: 'Create Quizes',
+   },
+   {
+      value: 'managequizes',
+      label: 'Manage Quizes',
    },
 ];
 
@@ -54,15 +58,15 @@ export const adminTabs = [
 
 export const tabs = [
    {
-      value: 'Home',
-      link: '/',
+      value: 'home',
+      label: 'Home',
    },
    {
-      value: 'Quizes',
-      link: '/quizes',
+      value: 'quizes',
+      label: 'Quizes',
    },
    {
-      value: 'Settings',
-      link: '/',
+      value: 'settings',
+      label: 'Settings',
    },
 ];

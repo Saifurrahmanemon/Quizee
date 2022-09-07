@@ -1,8 +1,10 @@
 import { useRoutes } from 'react-router-dom';
 import RequireAdmin from './components/RequireAuth/RequireAdmin';
+import RequireAuth from './components/RequireAuth/RequireAuth';
+import CreateQuizes from './pages/Admin/CreateQuizes';
 import AuthenticationForm from './pages/Auth/';
 import Home from './pages/Home';
-import Quizes from './pages/Quizes/';
+import Quizes from './pages/Quizes';
 
 const Router = () => {
    return useRoutes([
@@ -18,8 +20,16 @@ const Router = () => {
       {
          path: '/quizes',
          element: (
-            <RequireAdmin>
+            <RequireAuth>
                <Quizes />
+            </RequireAuth>
+         ),
+      },
+      {
+         path: '/createquizes',
+         element: (
+            <RequireAdmin>
+               <CreateQuizes />
             </RequireAdmin>
          ),
       },

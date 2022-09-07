@@ -7,7 +7,7 @@ export type UserProps = UserCredential | null | undefined;
 
 const useToken = (user: UserProps) => {
    const [token, setToken] = useState('');
-   console.log(user);
+
    useEffect(() => {
       const getToken = async () => {
          const info = user?.user;

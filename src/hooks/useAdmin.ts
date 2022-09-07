@@ -8,7 +8,6 @@ type AdminProps = User | null | undefined;
 const useAdmin = (user: AdminProps) => {
    const [admin, setAdmin] = useState(false);
    const [adminLoading, setAdminLoading] = useState(true);
-   console.log('from useAdmin', admin);
 
    useEffect(() => {
       const getAdmin = async () => {
@@ -20,8 +19,7 @@ const useAdmin = (user: AdminProps) => {
                setAdmin(res.data.admin);
             }
             setAdminLoading(false);
-         }
-         if (!email) {
+         } else {
             console.log('please log in');
             setAdminLoading(false);
          }
