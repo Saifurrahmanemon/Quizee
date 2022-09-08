@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+<h1 align="center"> Welcome to  Quizee</a> 👋</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
 
-## Available Scripts
+### Quizee is a full stack web application that allows you to play quiz for free and admins to manage their quizzes.Front End is developed Using React and Node.js for backend. App uses MongoDB.
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## About The Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Although project is still in development mood this branch is for submission (before the deadline )
+In this project I have been exposed to many practical techniques that I wouldn't have learned otherwise. Examples as following but not limited to:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-  **Planning and implementing reusable complex UI components**
+-  **Working with Typescript and axios interceptors for secure data fetching and error handling**
+-  **Creating pixel-perfect designs for different devices**
+-  **Working in functional programming paradigm with DRY concept in mind**
+-  **Integrated with Stripe for secure Payment**
+-  **Creating private routes for Admin and Users**
+-  **Building complex backend with JWT**
+-  **Working with React Query and Mantine Packages**
+-  **Authentication with Firebase with email service**
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
 
-### `yarn build`
+-  [React](https://reactjs.org/)
+-  [Mantine UI](https://mantine.dev/)
+-  [Firebase](https://firebase.google.com/)
+-  [React Router](https://reactrouter.com/)
+-  [Axios](https://axios-http.com/)
+-  [Tabler-Icon React](https://tabler-icons-react.vercel.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### [Server Side Code](https://github.com/Saifurrahmanemon/SRE_Industries_server)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+### Backend
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-  [Express](https://expressjs.com/)
+-  [Dotenv](https://www.npmjs.com/package/dotenv)
+-  [Jsonwebtoken](https://jwt.io/)
+-  [MongoDB](https://www.mongodb.com/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Plans
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+-  🧪 Write tests
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Contributing Guide
+
+If you want to contribute, improve or fix bugs in this repo, then check out the [Contributing Guide](./CONTRIBUTING.md)
+<br/>
