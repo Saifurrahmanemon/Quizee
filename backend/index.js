@@ -20,7 +20,6 @@ app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/admins', adminsRoutes);
 
 // run server
-
 app.get('/', (req, res) => {
    res.send('hello world');
 });

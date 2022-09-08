@@ -47,7 +47,6 @@ function AuthenticationForm(props: PaperProps) {
    const [signInWithEmailAndPassword, loginUser, loadingLogin, errorLogin] =
       useSignInWithEmailAndPassword(auth);
    const [token] = useToken(googleUser || signUpUser || loginUser);
-   console.log(token);
 
    const navigate = useNavigate();
 

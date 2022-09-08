@@ -13,13 +13,15 @@ const useAdmin = (user: AdminProps) => {
       const getAdmin = async () => {
          const email = user?.email;
          if (email) {
-            const res = await axios.get(`${TEST_URL}/admin/${email}`);
+            const res = await axios.get(`${TEST_URL}/admins/${email}`);
 
             if (res.status === 200) {
-               console.log(res.data);
                setAdmin(res.data.admin);
-               setAdminLoading(false);
             }
+            setAdminLoading(false);
+         } else {
+            console.log('please log in');
+            setAdminLoading(false);
          }
       };
 

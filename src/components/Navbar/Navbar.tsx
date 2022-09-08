@@ -1,24 +1,26 @@
-import { Avatar, Burger, Container, Group, Menu, Tabs, Text, UnstyledButton } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Avatar, Container, Group, Menu, Tabs, Text, UnstyledButton } from '@mantine/core';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Login, Logout } from 'tabler-icons-react';
-import quizeLogo from '../../assets/svg/quizelogo.svg';
+import QuizeLogo from '../../assets/svg/quizelogo.svg';
 import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 import { useStyles } from './Navbar.styles';
-import { tabs } from './util';
+import { adminTabs, tabs } from './util';
 
 function Navbar() {
    const { classes, theme, cx } = useStyles();
-   const [opened, { toggle }] = useDisclosure(false);
+   const [user] = useAuthState(auth);
+   const [admin] = useAdmin(user);
 
    const navigate = useNavigate();
-   const [user] = useAuthState(auth);
 
-   const items = tabs.map((tab) => (
+   const navlinks = admin === true ? adminTabs : tabs;
+
+   const items = navlinks.map((tab) => (
       <Tabs.Tab value={tab.value} key={tab.value}>
-         {tab.value}
+         {tab.label}
       </Tabs.Tab>
    ));
 
@@ -31,16 +33,8 @@ function Navbar() {
    return (
       <div className={classes.header}>
          <Container className={classes.mainSection}>
-            <img src={quizeLogo} className={classes.logo} alt='' />
+            <img src={QuizeLogo} className={classes.logo} alt='' />
             <Group position='apart'>
-               <Burger
-                  opened={opened}
-                  onClick={toggle}
-                  className={classes.burger}
-                  size='sm'
-                  color={theme.white}
-               />
-
                <Menu width={240} position='bottom-end' transition='pop-top-right'>
                   {signoutUser}
                   <Menu.Target>
@@ -74,7 +68,7 @@ function Navbar() {
                   tabsList: classes.tabsList,
                   tab: classes.tab,
                }}
-               onTabChange={(value) => navigate(`/${value?.toLocaleLowerCase()}`)}
+               onTabChange={(value) => navigate(`/${value}`)}
             >
                <Tabs.List>{items}</Tabs.List>
             </Tabs>
