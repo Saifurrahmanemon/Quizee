@@ -1,0 +1,411 @@
+[
+  {
+    "_id": "6319ebcb643aaf8bb2052824",
+    "name": "General Knowladge",
+    "description": "This Quiz is for testing yout general knowladge.Let see how much you know about that.",
+    "img": "https://i.ibb.co/bRYfHJ5/eberhard-grossgasteiger-p-Bgn-T4-KH8d4-unsplash.jpg",
+    "status": "free",
+    "retake": 3,
+    "countDownType": "full",
+    "showAnswer": "fullSubmission",
+    "price": 300,
+    "time": 60,
+    "quiz": [
+      {
+        "question": "Which ocean surrounds the Maldives?",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ebcb643aaf8bb2052826"
+          },
+          {
+            "value": "Indian Ocean",
+            "label": "Indian Ocean",
+            "_id": "6319ebcb643aaf8bb2052827"
+          },
+          {
+            "value": "Bangali Ocean",
+            "label": "Bangali Ocean",
+            "_id": "6319ebcb643aaf8bb2052828"
+          },
+          {
+            "value": "Malay Ocean",
+            "label": "Malay Ocean",
+            "_id": "6319ebcb643aaf8bb2052829"
+          },
+          {
+            "value": "US Ocean",
+            "label": "US Ocean",
+            "_id": "6319ebcb643aaf8bb205282a"
+          }
+        ],
+        "correct": [
+          "Indian Ocean"
+        ],
+        "_id": "6319ebcb643aaf8bb2052825"
+      },
+      {
+        "question": "What is the name of Europe's most northern town?",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ebcb643aaf8bb205282c"
+          },
+          {
+            "value": "Indian Ocean",
+            "label": "Indian Ocean",
+            "_id": "6319ebcb643aaf8bb205282d"
+          },
+          {
+            "value": "Bangali Ocean",
+            "label": "Bangali Ocean",
+            "_id": "6319ebcb643aaf8bb205282e"
+          },
+          {
+            "value": "Malay Ocean",
+            "label": "Malay Ocean",
+            "_id": "6319ebcb643aaf8bb205282f"
+          },
+          {
+            "value": "US Ocean",
+            "label": "US Ocean",
+            "_id": "6319ebcb643aaf8bb2052830"
+          },
+          {
+            "value": "Hammerfest",
+            "label": "Hammerfest",
+            "_id": "6319ebcb643aaf8bb2052831"
+          },
+          {
+            "value": "Norway",
+            "label": "Norway",
+            "_id": "6319ebcb643aaf8bb2052832"
+          },
+          {
+            "value": "England",
+            "label": "England",
+            "_id": "6319ebcb643aaf8bb2052833"
+          },
+          {
+            "value": "France",
+            "label": "France",
+            "_id": "6319ebcb643aaf8bb2052834"
+          }
+        ],
+        "correct": [
+          "Hammerfest",
+          "Norway"
+        ],
+        "_id": "6319ebcb643aaf8bb205282b"
+      },
+      {
+        "question": "Who was the last prisoner to be held in the Tower of London?",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ebcb643aaf8bb2052836"
+          },
+          {
+            "value": "Indian Ocean",
+            "label": "Indian Ocean",
+            "_id": "6319ebcb643aaf8bb2052837"
+          },
+          {
+            "value": "Bangali Ocean",
+            "label": "Bangali Ocean",
+            "_id": "6319ebcb643aaf8bb2052838"
+          },
+          {
+            "value": "Malay Ocean",
+            "label": "Malay Ocean",
+            "_id": "6319ebcb643aaf8bb2052839"
+          },
+          {
+            "value": "US Ocean",
+            "label": "US Ocean",
+            "_id": "6319ebcb643aaf8bb205283a"
+          },
+          {
+            "value": "Hammerfest",
+            "label": "Hammerfest",
+            "_id": "6319ebcb643aaf8bb205283b"
+          },
+          {
+            "value": "Norway",
+            "label": "Norway",
+            "_id": "6319ebcb643aaf8bb205283c"
+          },
+          {
+            "value": "England",
+            "label": "England",
+            "_id": "6319ebcb643aaf8bb205283d"
+          },
+          {
+            "value": "France",
+            "label": "France",
+            "_id": "6319ebcb643aaf8bb205283e"
+          },
+          {
+            "value": "Elun Musk",
+            "label": "Elun Musk",
+            "_id": "6319ebcb643aaf8bb205283f"
+          },
+          {
+            "value": "Rudolf Hesse",
+            "label": "Rudolf Hesse",
+            "_id": "6319ebcb643aaf8bb2052840"
+          },
+          {
+            "value": "Murk",
+            "label": "Murk",
+            "_id": "6319ebcb643aaf8bb2052841"
+          },
+          {
+            "value": "Shakib Al Hasan",
+            "label": "Shakib Al Hasan",
+            "_id": "6319ebcb643aaf8bb2052842"
+          }
+        ],
+        "correct": [
+          "Rudolf Hesse"
+        ],
+        "_id": "6319ebcb643aaf8bb2052835"
+      },
+      {
+        "question": "Which Tasmanian marsupial is known for its fiery temper?",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ebcb643aaf8bb2052844"
+          },
+          {
+            "value": "Indian Ocean",
+            "label": "Indian Ocean",
+            "_id": "6319ebcb643aaf8bb2052845"
+          },
+          {
+            "value": "Bangali Ocean",
+            "label": "Bangali Ocean",
+            "_id": "6319ebcb643aaf8bb2052846"
+          },
+          {
+            "value": "Malay Ocean",
+            "label": "Malay Ocean",
+            "_id": "6319ebcb643aaf8bb2052847"
+          },
+          {
+            "value": "US Ocean",
+            "label": "US Ocean",
+            "_id": "6319ebcb643aaf8bb2052848"
+          },
+          {
+            "value": "Hammerfest",
+            "label": "Hammerfest",
+            "_id": "6319ebcb643aaf8bb2052849"
+          },
+          {
+            "value": "Norway",
+            "label": "Norway",
+            "_id": "6319ebcb643aaf8bb205284a"
+          },
+          {
+            "value": "England",
+            "label": "England",
+            "_id": "6319ebcb643aaf8bb205284b"
+          },
+          {
+            "value": "France",
+            "label": "France",
+            "_id": "6319ebcb643aaf8bb205284c"
+          },
+          {
+            "value": "Elun Musk",
+            "label": "Elun Musk",
+            "_id": "6319ebcb643aaf8bb205284d"
+          },
+          {
+            "value": "Rudolf Hesse",
+            "label": "Rudolf Hesse",
+            "_id": "6319ebcb643aaf8bb205284e"
+          },
+          {
+            "value": "Murk",
+            "label": "Murk",
+            "_id": "6319ebcb643aaf8bb205284f"
+          },
+          {
+            "value": "Shakib Al Hasan",
+            "label": "Shakib Al Hasan",
+            "_id": "6319ebcb643aaf8bb2052850"
+          },
+          {
+            "value": "Tasmanian Devil.",
+            "label": "Tasmanian Devil.",
+            "_id": "6319ebcb643aaf8bb2052851"
+          }
+        ],
+        "correct": [
+          "Tasmanian Devil."
+        ],
+        "_id": "6319ebcb643aaf8bb2052843"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": "6319ee5d643aaf8bb2052857",
+    "name": "Animals",
+    "description": "This Quiz is for testing yout Animals. Let see how much you know about that. ",
+    "img": "https://i.ibb.co/K5kHKHq/de-jesus-benitez-k-Eg-JVDk-Qkb-U-unsplash.jpg",
+    "status": "paid",
+    "retake": 5,
+    "countDownType": "question",
+    "showAnswer": "perQuestion",
+    "price": 400,
+    "time": 30,
+    "quiz": [
+      {
+        "question": "I am Liverpudlian but not Liverpool. What am I?",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ee5d643aaf8bb2052859"
+          },
+          {
+            "value": "Everton Football Club",
+            "label": "Everton Football Club",
+            "_id": "6319ee5d643aaf8bb205285a"
+          },
+          {
+            "value": " Real Madrid",
+            "label": " Real Madrid",
+            "_id": "6319ee5d643aaf8bb205285b"
+          },
+          {
+            "value": "Liverpool",
+            "label": "Liverpool",
+            "_id": "6319ee5d643aaf8bb205285c"
+          }
+        ],
+        "correct": [
+          "Everton Football Club"
+        ],
+        "_id": "6319ee5d643aaf8bb2052858"
+      },
+      {
+        "question": "Name the French novelist and poet, born in 1802, who was exiled to Jersey and who wrote about a hunchback.",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ee5d643aaf8bb205285e"
+          },
+          {
+            "value": "Elun Musk",
+            "label": "Elun Musk",
+            "_id": "6319ee5d643aaf8bb205285f"
+          },
+          {
+            "value": "Victor Hugo.",
+            "label": "Victor Hugo.",
+            "_id": "6319ee5d643aaf8bb2052860"
+          },
+          {
+            "value": "Brandon Eich",
+            "label": "Brandon Eich",
+            "_id": "6319ee5d643aaf8bb2052861"
+          },
+          {
+            "value": "Jordan Walke",
+            "label": "Jordan Walke",
+            "_id": "6319ee5d643aaf8bb2052862"
+          }
+        ],
+        "correct": [
+          "Everton Football Club",
+          "Victor Hugo."
+        ],
+        "_id": "6319ee5d643aaf8bb205285d"
+      },
+      {
+        "question": "Name the British-American actress famous for her violet eyes and voluptuous figure, who found fame as an Egyptian.",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ee5d643aaf8bb2052864"
+          },
+          {
+            "value": "Elizabeth Taylor.",
+            "label": "Elizabeth Taylor.",
+            "_id": "6319ee5d643aaf8bb2052865"
+          },
+          {
+            "value": "Elizabeth Taylor",
+            "label": "Elizabeth Taylor",
+            "_id": "6319ee5d643aaf8bb2052866"
+          },
+          {
+            "value": "TylorSwift",
+            "label": "TylorSwift",
+            "_id": "6319ee5d643aaf8bb2052867"
+          },
+          {
+            "value": "Brain Lara",
+            "label": "Brain Lara",
+            "_id": "6319ee5d643aaf8bb2052868"
+          }
+        ],
+        "correct": [
+          "Everton Football Club",
+          "Victor Hugo.",
+          "Elizabeth Taylor"
+        ],
+        "_id": "6319ee5d643aaf8bb2052863"
+      },
+      {
+        "question": " have a cake and a table named after me, and I'm used all round the world. What am I",
+        "options": [
+          {
+            "value": "",
+            "label": "",
+            "_id": "6319ee5d643aaf8bb205286a"
+          },
+          {
+            "value": "Football",
+            "label": "Football",
+            "_id": "6319ee5d643aaf8bb205286b"
+          },
+          {
+            "value": "Coffee",
+            "label": "Coffee",
+            "_id": "6319ee5d643aaf8bb205286c"
+          },
+          {
+            "value": "Tea",
+            "label": "Tea",
+            "_id": "6319ee5d643aaf8bb205286d"
+          },
+          {
+            "value": "Chocolate",
+            "label": "Chocolate",
+            "_id": "6319ee5d643aaf8bb205286e"
+          }
+        ],
+        "correct": [
+          "Everton Football Club",
+          "Victor Hugo.",
+          "Elizabeth Taylor",
+          "Coffee"
+        ],
+        "_id": "6319ee5d643aaf8bb2052869"
+      }
+    ],
+    "__v": 0
+  }
+]

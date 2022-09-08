@@ -73,6 +73,13 @@ function CreateQuizes() {
       };
       const updatedQuestion = [...questions, getQuestion];
       setQuestions(updatedQuestion);
+      setQuestion('');
+      setOptions([
+         {
+            value: '',
+            label: '',
+         },
+      ]);
 
       showNotification({
          title: 'Question Added successfully',
@@ -85,6 +92,7 @@ function CreateQuizes() {
    const handleOnQuizCreate = async (values: ICreateQuizes) => {
       values.img = image;
       values.quiz = questions;
+      console.log(values);
       const res = await axiosPrivate.post(`${TEST_URL}/quizes/${user?.email}`, values);
       console.log(res);
    };
@@ -107,7 +115,7 @@ function CreateQuizes() {
    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
       onDrop,
       accept: {
-         'image/png': ['.png', '.jpeg', '.bmp', '.jpg'],
+         'image/png': ['.png', '.jpeg', '.bmp', '.jpg', '.avif'],
       },
    });
 
