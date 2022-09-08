@@ -8,11 +8,18 @@ const quizesScheme = mongoose.Schema({
    retake: Number,
    countDownType: String,
    showAnswer: String,
-   quize: [
+   price: Number,
+   time: Number,
+   quiz: [
       {
          question: String,
-         options: [String],
-         correct: mongoose.Schema.Types.Mixed,
+         options: [
+            {
+               value: String,
+               label: String,
+            },
+         ],
+         correct: [String],
       },
    ],
 });

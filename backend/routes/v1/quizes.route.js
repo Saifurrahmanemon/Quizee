@@ -1,7 +1,6 @@
 const express = require('express');
 const quizesController = require('../../controllers/quizes.controller');
 const verifyAdmin = require('../../middleware/verifyAdmin');
-const verifyJWT = require('../../middleware/verifyJWT');
 
 const router = express.Router();
 

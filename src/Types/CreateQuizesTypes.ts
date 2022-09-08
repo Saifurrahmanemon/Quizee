@@ -1,7 +1,10 @@
-type QuizType = {
+export type QuizType = {
    question: string;
-   options: string[];
-   correct: number | number[];
+   options: {
+      value: string;
+      label: string;
+   }[];
+   correct: string[];
 };
 
 export interface ICreateQuizes {
@@ -9,8 +12,10 @@ export interface ICreateQuizes {
    description: string;
    img: string;
    status: string;
+   price?: number;
    retake: number;
    countDownType: string;
    showAnswer: string;
-   quize: [QuizType];
+   time: number;
+   quiz: QuizType[];
 }
