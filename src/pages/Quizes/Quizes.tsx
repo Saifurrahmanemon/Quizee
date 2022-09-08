@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { TEST_URL } from '../../api/Api';
 import axiosPrivate from '../../api/AxiosPrivate';
 import Loading from '../../components/Loading';
-import { IQuize } from '../../Types/Quizes';
+import { IQuize } from '../../Types/QuizesTypes';
 import QuizCard from './QuizCard/QuizCard';
 
 function Quizes() {

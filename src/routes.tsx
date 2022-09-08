@@ -5,6 +5,7 @@ import CreateQuizes from './pages/Admin/CreateQuizes';
 import AuthenticationForm from './pages/Auth/';
 import Home from './pages/Home';
 import Quizes from './pages/Quizes';
+import Quiz from './pages/Quizes/Quiz';
 
 const Router = () => {
    return useRoutes([
@@ -22,6 +23,14 @@ const Router = () => {
          element: (
             <RequireAuth>
                <Quizes />
+            </RequireAuth>
+         ),
+      },
+      {
+         path: '/quiz/:id',
+         element: (
+            <RequireAuth>
+               <Quiz />
             </RequireAuth>
          ),
       },

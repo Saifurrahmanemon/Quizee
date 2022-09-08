@@ -21,4 +21,12 @@ router.get('/', verifyJWT, quizesController.getAllQuizes);
 
 router.post('/:email', verifyAdmin, quizesController.postAQuize);
 
+/**
+ * @desc single quiz
+ * @route get api/v1/quizes
+ * @access private users
+ */
+
+router.get('/:id', verifyJWT, quizesController.getAQuiz);
+
 module.exports = router;
