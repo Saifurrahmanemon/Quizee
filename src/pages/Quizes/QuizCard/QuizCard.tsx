@@ -1,13 +1,12 @@
 import { Badge, Button, Paper, Text, Title } from '@mantine/core';
+import { IQuize } from '../../../Types/Quizes';
 import { useStyles } from './QuizCard.style';
 
-interface CardProps {
-   image: string;
-   title: string;
-   category: string;
-}
+type QuizCardProps = {
+   item: IQuize;
+};
 
-function QuizCard({ image, title, category }: CardProps) {
+function QuizCard({ item }: QuizCardProps) {
    const { classes } = useStyles();
 
    return (
@@ -15,20 +14,20 @@ function QuizCard({ image, title, category }: CardProps) {
          shadow='md'
          p='xl'
          radius='md'
-         sx={{ backgroundImage: `url(${image})` }}
+         sx={{ backgroundImage: `url(${item.img})` }}
          className={classes.card}
       >
          <div>
             <Text className={classes.category} size='xs'>
-               {category}
+               {item.name}
             </Text>
             <Title order={3} className={classes.title}>
-               {title}
+               {item.description}
             </Title>
          </div>
          <div className={classes.footer}>
             <Button variant='white' color='dark'>
-               Play Quize
+               Play Quiz
             </Button>
             <Badge size='lg' variant='gradient'>
                Paid

@@ -1,6 +1,7 @@
 const express = require('express');
 const quizesController = require('../../controllers/quizes.controller');
 const verifyAdmin = require('../../middleware/verifyAdmin');
+const verifyJWT = require('../../middleware/verifyJWT');
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ const router = express.Router();
  * @access private users
  */
 
-router.get('/', quizesController.getAllQuizes);
+router.get('/', verifyJWT, quizesController.getAllQuizes);
 
 /**
  * @desc only admin can create a quiz

@@ -1,61 +1,53 @@
 import { Carousel } from '@mantine/carousel';
 import { Container, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { useEffect, useState } from 'react';
+import { TEST_URL } from '../../api/Api';
+import axiosPrivate from '../../api/AxiosPrivate';
+import Loading from '../../components/Loading';
+import { IQuize } from '../../Types/Quizes';
 import QuizCard from './QuizCard/QuizCard';
 
-const data = [
-   {
-      image: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      title: 'Best forests to visit in North America',
-      category: 'nature',
-   },
-   {
-      image: 'https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      title: 'Hawaii beaches review: better than you think',
-      category: 'beach',
-   },
-   {
-      image: 'https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      title: 'Mountains at night: 12 best locations to enjoy the view',
-      category: 'nature',
-   },
-   {
-      image: 'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      title: 'Aurora in Norway: when to visit for best experience',
-      category: 'nature',
-   },
-   {
-      image: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      title: 'Best places to visit this winter',
-      category: 'tourism',
-   },
-   {
-      image: 'https://images.unsplash.com/photo-1582721478779-0ae163c05a60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-      title: 'Active volcanos reviews: travel at your own risk',
-      category: 'nature',
-   },
-];
-
 function Quizes() {
+   const [quizes, setQuizes] = useState([]);
+   const [loading, setLoading] = useState(false);
+
+   useEffect(() => {
+      setLoading(true);
+      const getQuizzes = async () => {
+         const res = await axiosPrivate.get(`${TEST_URL}/quizes`);
+         if (res.status === 200) {
+            setQuizes(res.data);
+         }
+         setLoading(false);
+      };
+      getQuizzes();
+   }, []);
+
    const theme = useMantineTheme();
    const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
-   const slides = data.map((item) => (
-      <Carousel.Slide key={item.title}>
-         <QuizCard {...item} />
+
+   const slides = quizes.map((item: IQuize) => (
+      <Carousel.Slide key={item._id}>
+         <QuizCard item={item} />
       </Carousel.Slide>
    ));
 
    return (
       <Container my={50}>
-         <Carousel
-            slideSize='33.333333%'
-            breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
-            slideGap='xl'
-            align='start'
-            slidesToScroll={mobile ? 1 : 3}
-         >
-            {slides}
-         </Carousel>
+         {loading ? (
+            <Loading />
+         ) : (
+            <Carousel
+               slideSize='33.333333%'
+               breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
+               slideGap='xl'
+               align='start'
+               slidesToScroll={mobile ? 1 : 3}
+            >
+               {slides}
+            </Carousel>
+         )}
       </Container>
    );
 }
