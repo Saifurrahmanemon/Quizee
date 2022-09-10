@@ -15,6 +15,7 @@ import { TEST_URL } from '../../../api/Api';
 import axiosPrivate from '../../../api/AxiosPrivate';
 import { IQuize } from '../../../Types/QuizesTypes';
 import Timer from '../components/Timer';
+import ShowAnswers from '../ShowAnswers';
 
 const useStyles = createStyles((theme) => ({
    rowSelected: {
@@ -25,6 +26,13 @@ const useStyles = createStyles((theme) => ({
    },
 }));
 
+export type CompareAnswerType = {
+   question: string;
+   userAnswers: string[] | [];
+   correctAnswer: string[] | [];
+   point: number;
+};
+
 //* aaaah!! this component is getting too nasty, poor performance
 
 function Quiz() {
@@ -33,13 +41,15 @@ function Quiz() {
    const [questions, setQuestions] = useState<IQuize[] | []>([]);
    const [questionNumber, setQuestionNumber] = useState(0);
    const [timeOver, setTimeOver] = useState(true);
-   const { classes, cx } = useStyles();
-   const [selection, setSelection] = useState(['1']);
-   const [userAnswer, setUserAnswer] = useState([]);
+   const [userAnswer, setUserAnswer] = useState<string[] | []>([]);
+   const [allQuestionAnswers, setAllQuestionAnswers] = useState<CompareAnswerType[] | []>([]);
    const [showEnd, setShowEnd] = useState(false);
    const [initialUI, setInitialUI] = useState(true);
    const [loading, setLoading] = useState(false);
    const [checked, setChecked] = useState(false);
+   const { classes, cx } = useStyles();
+
+   const renderQuestion = questions[questionNumber];
 
    useEffect(() => {
       setLoading(true);
@@ -64,35 +74,40 @@ function Quiz() {
       setTimeOver(false);
       setInitialUI(false);
    };
+
    const handleNextQuiz = () => {
       if (questionNumber < questions.length) {
+         // check if user answer is correct or not
+         const result =
+            userAnswer.length === renderQuestion?.correct.length &&
+            userAnswer.every((value, index) => value === renderQuestion?.correct[index]);
+
+         const point = result === true ? 1 : 0;
+
+         const compareAnswer = {
+            question: renderQuestion?.question,
+            userAnswers: userAnswer,
+            correctAnswer: renderQuestion.correct,
+            point,
+         };
+
+         const updatedAnswers = [...allQuestionAnswers, compareAnswer];
+
+         setAllQuestionAnswers(updatedAnswers);
+
          setQuestionNumber((prev) => prev + 1);
       }
-      if (questionNumber + 1 === questions.length) {
+      if (questionNumber === questions.length - 1) {
          setTimeOver(true);
          setShowEnd(true);
       }
    };
-   const renderQuestion = questions[questionNumber];
 
    const displayOptions = renderQuestion?.options.map((option) => (
-      <Checkbox
-         key={option.value}
-         checked={checked}
-         value={option.value}
-         label={option.label}
-         onChange={(event) => setChecked(event.currentTarget.checked)}
-      />
+      <Checkbox key={option.value} checked={checked} value={option.value} label={option.label} />
    ));
 
-   const showEndMssge = (
-      <Center my={30}>
-         <Text p={20} size='lg'>
-            Thank you very much for participating in the quiz we are in development so cannot show
-            the score
-         </Text>
-      </Center>
-   );
+   const showEndMssge = <ShowAnswers allQuestionAnswers={allQuestionAnswers} />;
 
    const quizInfo = initialUI ? (
       <Paper my={20} radius='md' p='md' withBorder>
@@ -111,7 +126,9 @@ function Quiz() {
          <Text size='sm' color='gray' my={20}>
             Please Chose any question
          </Text>
-         <Checkbox.Group>{displayOptions}</Checkbox.Group>
+         <Checkbox.Group onChange={(value) => setUserAnswer(value)}>
+            {displayOptions}
+         </Checkbox.Group>
          <Divider my='sm' />
          <Group position='right'>
             <Button onClick={handleNextQuiz} variant='gradient' px={20}>
