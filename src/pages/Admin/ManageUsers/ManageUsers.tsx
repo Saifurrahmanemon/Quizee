@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { TEST_URL } from '../../../api/Api';
 import axiosPrivate from '../../../api/AxiosPrivate';
+import Loading from '../../../components/Loading';
 import auth from '../../../firebase.init';
 import { useStyles } from './ManageUsers.style';
 
@@ -31,13 +32,12 @@ function ManageUsers() {
 
       getQuiz();
    }, []);
-   console.log(users);
 
    const theads = (
       <tr>
          <th>Name</th>
          <th>Email</th>
-         <th>Role</th>
+         <th>Payment Status</th>
       </tr>
    );
 
@@ -45,9 +45,18 @@ function ManageUsers() {
       <tr key={user.email}>
          <td>{user.name === null ? 'No Name' : user.name}</td>
          <td>{user.email}</td>
-         <td>{user.role === true ? 'Admin' : 'User'}</td>
+         <td>Transaction Id</td>
       </tr>
    ));
+
+   const showTableInfo = loading ? (
+      <Loading />
+   ) : (
+      <>
+         <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>{theads}</thead>
+         <tbody>{rows}</tbody>
+      </>
+   );
 
    return (
       <Container>
@@ -66,10 +75,7 @@ function ManageUsers() {
                   my={20}
                   sx={{ minWidth: 500 }}
                >
-                  <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
-                     {theads}
-                  </thead>
-                  <tbody>{rows}</tbody>
+                  {showTableInfo}
                </Table>
             </ScrollArea>
          </Paper>

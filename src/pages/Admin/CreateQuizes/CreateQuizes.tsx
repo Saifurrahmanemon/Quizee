@@ -1,10 +1,13 @@
 import {
    Box,
    Button,
+   Center,
    Container,
+   Divider,
    MultiSelect,
    NumberInput,
    Select,
+   SimpleGrid,
    Text,
    Textarea,
    TextInput,
@@ -21,6 +24,7 @@ import axiosPrivate from '../../../api/AxiosPrivate';
 import auth from '../../../firebase.init';
 import { ICreateQuizes, QuizType } from '../../../Types/CreateQuizesTypes';
 import { useStyles } from './CreateQuizes.style';
+
 const url = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_IMGBB_API_KEY}`;
 
 /*
@@ -64,8 +68,10 @@ function CreateQuizes() {
          ],
       },
    });
+   console.log(questions);
 
    const handleOnQuestionCreate = () => {
+      setLoading(true);
       const getQuestion = {
          question,
          options,
@@ -85,6 +91,7 @@ function CreateQuizes() {
          title: 'Question Added successfully',
          message: 'Hey there, your question is added! 🤥',
       });
+      setLoading(false);
    };
 
    // push question to our database
@@ -99,6 +106,10 @@ function CreateQuizes() {
 
    //* disable add question button
    const disableAddQuestion = question.length <= 2 || answers.length < 1;
+
+   //* disable add quiz button until end user adds a question
+   console.log(question.length);
+   const disableAddQuiz = questions.length < 1;
 
    //* settings for dropzone
    const onDrop = useCallback(async (acceptedFiles: (string | Blob)[]) => {
@@ -133,60 +144,124 @@ function CreateQuizes() {
             minRows={2}
             maxRows={4}
          />
-         <MultiSelect
-            label='Chose options for the question'
-            data={options}
-            my={20}
-            clearable
-            placeholder='Select items'
-            searchable
-            creatable
-            getCreateLabel={(query) => `+ Create ${query}`}
-            onCreate={(query) => {
-               const item = { value: query, label: query };
-               setOptions((current) => [...current, item]);
-               return item;
-            }}
-         />
-         <MultiSelect
-            data={options}
-            mt={20}
-            creatable
-            onChange={(value) => setAnswers(value)}
-            label='chose the answer'
-            placeholder='chose multiple if answer is multiple'
-         />
+         <SimpleGrid mb={10} cols={2}>
+            <MultiSelect
+               label='Chose options for the question'
+               data={options}
+               placeholder='Select items'
+               searchable
+               creatable
+               getCreateLabel={(query) => `+ Create ${query}`}
+               onCreate={(query) => {
+                  const item = { value: query, label: query };
+                  setOptions((current) => [...current, item]);
+                  return item;
+               }}
+            />{' '}
+            <MultiSelect
+               data={options}
+               creatable
+               onChange={(value) => setAnswers(value)}
+               label='chose the answer'
+               placeholder='chose multiple if answer is multiple'
+            />
+         </SimpleGrid>
 
-         <Button
-            disabled={disableAddQuestion}
-            onClick={handleOnQuestionCreate}
-            variant='filled'
-            size='xs'
-            mt='sm'
-         >
-            Add Question
-         </Button>
+         <Center>
+            <Button
+               disabled={disableAddQuestion}
+               onClick={handleOnQuestionCreate}
+               loading={loading}
+               variant='filled'
+               size='xs'
+               mt='sm'
+            >
+               Add Question
+            </Button>
+         </Center>
       </div>
    );
 
    return (
       <Container>
-         <Box
-            my={20}
-            px='xs'
-            style={{
-               marginRight: '20%',
-            }}
-         >
+         <Box my={20} px='xs'>
             <h1>Add Quizes:</h1>
             <form onSubmit={form.onSubmit(handleOnQuizCreate)}>
-               <TextInput
-                  label='Quiz Name'
-                  placeholder='Name of your Quiz'
+               <SimpleGrid cols={2}>
+                  <div className='left'>
+                     <TextInput
+                        label='Quiz Name'
+                        placeholder='Name of your Quiz'
+                        classNames={classes}
+                        required
+                        {...form.getInputProps('name')}
+                     />
+                     <NumberInput
+                        defaultValue={0}
+                        classNames={classes}
+                        max={10000}
+                        min={0}
+                        required
+                        placeholder='price of the quiz'
+                        label='Price'
+                        {...form.getInputProps('price')}
+                     />
+
+                     <Select
+                        label='Question Timer Type'
+                        placeholder='Select How Count Time'
+                        classNames={classes}
+                        data={[
+                           { value: 'question', label: 'Per Question' },
+                           { value: 'full', label: 'Whole Quiz' },
+                        ]}
+                        {...form.getInputProps('countDownType')}
+                     />
+                  </div>
+                  <div className='right'>
+                     <Select
+                        label='Status of the Quiz'
+                        placeholder='Pick one'
+                        classNames={classes}
+                        required
+                        data={[
+                           { value: 'paid', label: 'Paid' },
+                           { value: 'free', label: 'Free' },
+                        ]}
+                        {...form.getInputProps('status')}
+                     />
+                     <NumberInput
+                        defaultValue={0}
+                        classNames={classes}
+                        max={10}
+                        min={0}
+                        required
+                        placeholder='Number of retake for this quiz'
+                        label='Retakes'
+                        withAsterisk
+                        {...form.getInputProps('retake')}
+                     />
+                     <NumberInput
+                        defaultValue={0}
+                        classNames={classes}
+                        max={1000}
+                        min={0}
+                        required
+                        placeholder='total or per quiz time in minute'
+                        label='Time'
+                        {...form.getInputProps('time')}
+                     />
+                  </div>
+               </SimpleGrid>
+               <Select
+                  label='When to show answer?'
+                  placeholder='Select When to show answer'
                   classNames={classes}
-                  my={20}
-                  required
-                  {...form.getInputProps('name')}
+                  data={[
+                     { value: 'perQuestion', label: 'After every question' },
+                     { value: 'fullSubmission', label: 'After full submission' },
+                  ]}
+                  {...form.getInputProps('showAnswer')}
                />
                <TextInput
                   label='Description'
@@ -198,68 +273,8 @@ function CreateQuizes() {
                   required
                   {...form.getInputProps('description')}
                />
-               <Select
-                  label='Status of the Quiz'
-                  placeholder='Pick one'
-                  classNames={classes}
-                  required
-                  data={[
-                     { value: 'paid', label: 'Paid' },
-                     { value: 'free', label: 'Free' },
-                  ]}
-                  {...form.getInputProps('status')}
-               />
-               <NumberInput
-                  defaultValue={0}
-                  classNames={classes}
-                  max={10000}
-                  min={0}
-                  required
-                  placeholder='price of the quiz'
-                  label='Price'
-                  {...form.getInputProps('price')}
-               />
-               <NumberInput
-                  defaultValue={0}
-                  classNames={classes}
-                  max={10}
-                  min={0}
-                  required
-                  placeholder='Number of retake for this quiz'
-                  label='Retakes'
-                  withAsterisk
-                  {...form.getInputProps('retake')}
-               />
-               <Select
-                  label='Question Timer Type'
-                  placeholder='Select How Count Time'
-                  classNames={classes}
-                  data={[
-                     { value: 'question', label: 'Per Question' },
-                     { value: 'full', label: 'Whole Quiz' },
-                  ]}
-                  {...form.getInputProps('countDownType')}
-               />
-               <NumberInput
-                  defaultValue={0}
-                  classNames={classes}
-                  max={1000}
-                  min={0}
-                  required
-                  placeholder='total or per quiz time in minute'
-                  label='Time'
-                  {...form.getInputProps('time')}
-               />
-               <Select
-                  label='When to show answer?'
-                  placeholder='Select When to show answer'
-                  classNames={classes}
-                  data={[
-                     { value: 'perQuestion', label: 'After every question' },
-                     { value: 'fullSubmission', label: 'After full submission' },
-                  ]}
-                  {...form.getInputProps('showAnswer')}
-               />
+
+               <Divider my='lg' label='Add Quiz Question' labelPosition='center' />
                {questionInputs}
                <div className={classes.dropzone} {...getRootProps()}>
                   <input {...getInputProps()} />
@@ -271,7 +286,15 @@ function CreateQuizes() {
                   <Text>{acceptedFiles[0]?.name}</Text>
                </div>
 
-               <Button loading={loading} type='submit' variant='light' mt='lg'>
+               <Button
+                  disabled={disableAddQuiz}
+                  loading={loading}
+                  type='submit'
+                  mt='lg'
+                  fullWidth
+                  variant='gradient'
+                  gradient={{ from: 'indigo', to: 'cyan' }}
+               >
                   Add Quiz
                </Button>
             </form>

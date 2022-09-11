@@ -10,18 +10,15 @@ const useAdmin = (user: AdminProps) => {
    const [adminLoading, setAdminLoading] = useState(true);
 
    useEffect(() => {
-      const getAdmin = async () => {
+      const getAdmin = () => {
          const email = user?.email;
          if (email) {
-            const res = await axios.get(`${TEST_URL}/admins/${email}`);
-
-            if (res.status === 200) {
-               setAdmin(res.data.admin);
-            }
-            setAdminLoading(false);
-         } else {
-            console.log('please log in');
-            setAdminLoading(false);
+            axios.get(`${TEST_URL}/admins/${email}`).then((res) => {
+               if (res.status === 200) {
+                  setAdmin(res.data.admin);
+               }
+               setAdminLoading(false);
+            });
          }
       };
 
