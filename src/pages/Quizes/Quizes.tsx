@@ -27,7 +27,7 @@ function Quizes() {
    const theme = useMantineTheme();
    const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
-   const slides = quizes.map((item: IQuize) => (
+   const slides = quizes?.map((item: IQuize) => (
       <Carousel.Slide key={item._id}>
          <QuizCard item={item} />
       </Carousel.Slide>

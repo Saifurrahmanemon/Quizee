@@ -1,11 +1,11 @@
 import {
    Button,
    Center,
+   Checkbox,
    Container,
    createStyles,
    Divider,
    Group,
-   Menu,
    Paper,
    Text,
 } from '@mantine/core';
@@ -15,27 +15,41 @@ import { TEST_URL } from '../../../api/Api';
 import axiosPrivate from '../../../api/AxiosPrivate';
 import { IQuize } from '../../../Types/QuizesTypes';
 import Timer from '../components/Timer';
+import ShowAnswers from '../ShowAnswers';
 
 const useStyles = createStyles((theme) => ({
-   item: {
-      '&[data-active]': {
-         backgroundColor: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
-         color: theme.white,
-      },
+   rowSelected: {
+      backgroundColor:
+         theme.colorScheme === 'dark'
+            ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
+            : theme.colors[theme.primaryColor][0],
    },
 }));
 
+export type CompareAnswerType = {
+   question: string;
+   userAnswers: string[] | [];
+   correctAnswer: string[] | [];
+   point: number;
+};
+
 //* aaaah!! this component is getting too nasty, poor performance
+
 function Quiz() {
    const { id } = useParams();
    const [timer, setTimer] = useState(0);
    const [questions, setQuestions] = useState<IQuize[] | []>([]);
    const [questionNumber, setQuestionNumber] = useState(0);
    const [timeOver, setTimeOver] = useState(true);
-   const [userAnswer, setUserAnswer] = useState([]);
+   const [userAnswer, setUserAnswer] = useState<string[] | []>([]);
+   const [allQuestionAnswers, setAllQuestionAnswers] = useState<CompareAnswerType[] | []>([]);
+   const [showEnd, setShowEnd] = useState(false);
    const [initialUI, setInitialUI] = useState(true);
    const [loading, setLoading] = useState(false);
-   const { classes } = useStyles();
+   const [checked, setChecked] = useState(false);
+   const { classes, cx } = useStyles();
+
+   const renderQuestion = questions[questionNumber];
 
    useEffect(() => {
       setLoading(true);
@@ -60,23 +74,40 @@ function Quiz() {
       setTimeOver(false);
       setInitialUI(false);
    };
+
    const handleNextQuiz = () => {
-      console.log(questionNumber);
       if (questionNumber < questions.length) {
+         // check if user answer is correct or not
+         const result =
+            userAnswer.length === renderQuestion?.correct.length &&
+            userAnswer.every((value, index) => value === renderQuestion?.correct[index]);
+
+         const point = result === true ? 1 : 0;
+
+         const compareAnswer = {
+            question: renderQuestion?.question,
+            userAnswers: userAnswer,
+            correctAnswer: renderQuestion.correct,
+            point,
+         };
+
+         const updatedAnswers = [...allQuestionAnswers, compareAnswer];
+
+         setAllQuestionAnswers(updatedAnswers);
+
          setQuestionNumber((prev) => prev + 1);
       }
-      if (questionNumber === questions.length) {
+      if (questionNumber === questions.length - 1) {
          setTimeOver(true);
+         setShowEnd(true);
       }
    };
-   const renderQuestion = questions[questionNumber];
 
    const displayOptions = renderQuestion?.options.map((option) => (
-      <>
-         <Menu.Item key={option.value}>{option.value}</Menu.Item>
-         <Menu.Divider />
-      </>
+      <Checkbox key={option.value} checked={checked} value={option.value} label={option.label} />
    ));
+
+   const showEndMssge = <ShowAnswers allQuestionAnswers={allQuestionAnswers} />;
 
    const quizInfo = initialUI ? (
       <Paper my={20} radius='md' p='md' withBorder>
@@ -95,9 +126,9 @@ function Quiz() {
          <Text size='sm' color='gray' my={20}>
             Please Chose any question
          </Text>
-         <Menu classNames={classes} radius='md'>
+         <Checkbox.Group onChange={(value) => setUserAnswer(value)}>
             {displayOptions}
-         </Menu>
+         </Checkbox.Group>
          <Divider my='sm' />
          <Group position='right'>
             <Button onClick={handleNextQuiz} variant='gradient' px={20}>
@@ -106,6 +137,8 @@ function Quiz() {
          </Group>
       </>
    );
+
+   const isQuizEnd = showEnd ? showEndMssge : quizInfo;
 
    const numberOfQuestions = <Text>Number of Question {questions.length} </Text>;
 
@@ -127,7 +160,7 @@ function Quiz() {
                   <Timer time={timer} timeOver={timeOver} setTime={handleTimer}></Timer>
                </Paper>
             </Group>
-            {quizInfo}
+            {isQuizEnd}
          </Paper>
       </Container>
    );

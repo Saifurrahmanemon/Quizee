@@ -7,8 +7,7 @@ type TimerProps = {
 };
 
 function Timer({ time, timeOver, setTime }: TimerProps) {
-   const miliSecond = time;
-   console.log(miliSecond);
+   const milSecond = time;
 
    useEffect(() => {
       let interval: string | number | NodeJS.Timer | undefined;
@@ -26,9 +25,9 @@ function Timer({ time, timeOver, setTime }: TimerProps) {
       <>
          Time:{' '}
          <strong>
-            <span>{('0' + Math.floor(miliSecond / 3600000)).slice(-2)}:</span>
-            <span>{('0' + Math.floor((miliSecond / 60000) % 60)).slice(-2)}:</span>
-            <span>{('0' + (Math.floor((miliSecond / 1000) % 60) % 60)).slice(-2)}</span>s
+            <span>{('0' + Math.floor(milSecond / 3600000)).slice(-2)}:</span>
+            <span>{('0' + Math.floor((milSecond / 60000) % 60)).slice(-2)}:</span>
+            <span>{('0' + (Math.floor((milSecond / 1000) % 60) % 60)).slice(-2)}</span>s
          </strong>
       </>
    );

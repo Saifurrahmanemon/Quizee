@@ -60,7 +60,9 @@ function AuthenticationForm(props: PaperProps) {
       }
    }, [from, navigate, token]);
 
-   console.log('Sign up Error', errorSignUp, 'Login Error', errorLogin);
+   if (errorSignUp || errorLogin) {
+      console.log(errorSignUp || errorLogin);
+   }
 
    // 🔑 for form validation 🔑
    const form = useForm({
@@ -68,31 +70,24 @@ function AuthenticationForm(props: PaperProps) {
          email: '',
          name: '',
          password: '',
-         terms: true,
       },
 
-      validate: ({ name, email, password }) => ({
-         name: name.length < 3 ? 'Too short name' : null,
+      validate: ({ email, password }) => ({
          email: /^\S+@\S+$/.test(email) ? null : 'Please Provide a valid email',
          password: password.length < 6 ? 'Password should include at least 6 characters' : null,
       }),
    });
 
    const handleSignUpOnSubmit = async ({ name, password, email }: FormProps) => {
+      console.log('handle login is called');
       await createUserWithEmailAndPassword(email, password);
       await updateProfile({ displayName: name });
    };
 
    const handleLoginOnSubmit = async ({ email, password }: FormProps) => {
+      console.log('handle login is called');
       await signInWithEmailAndPassword(email, password);
    };
-
-   const submitButton =
-      loadingGoogle || loadingSignUp || loadingLogin ? (
-         <Loader />
-      ) : (
-         <Button type='submit'>{upperFirst(type)}</Button>
-      );
 
    const submitGoogleButton =
       loadingGoogle || loadingSignUp || loadingLogin ? (
@@ -104,6 +99,8 @@ function AuthenticationForm(props: PaperProps) {
       );
 
    const handleAuthOnSubmit = type === 'login' ? handleLoginOnSubmit : handleSignUpOnSubmit;
+
+   const buttonDisabled = loadingGoogle || loadingLogin || loadingSignUp;
 
    return (
       <Container size={500} my={40}>
@@ -125,7 +122,7 @@ function AuthenticationForm(props: PaperProps) {
                         label='Name'
                         placeholder='Your name'
                         value={form.values.name}
-                        onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
+                        {...form.getInputProps('name')}
                      />
                   )}
 
@@ -134,7 +131,7 @@ function AuthenticationForm(props: PaperProps) {
                      label='Email'
                      placeholder='hello@Quizee.dev'
                      value={form.values.email}
-                     onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
+                     {...form.getInputProps('email')}
                      error={form.errors.email && 'Invalid email'}
                   />
 
@@ -143,19 +140,11 @@ function AuthenticationForm(props: PaperProps) {
                      label='Password'
                      placeholder='Your password'
                      value={form.values.password}
-                     onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
+                     {...form.getInputProps('password')}
                      error={form.errors.password && 'Password should include at least 6 characters'}
                   />
 
-                  {type === 'register' && (
-                     <Checkbox
-                        label='I accept terms and conditions'
-                        checked={form.values.terms}
-                        onChange={(event) =>
-                           form.setFieldValue('terms', event.currentTarget.checked)
-                        }
-                     />
-                  )}
+                  {type === 'register' && <Checkbox label='I accept terms and conditions' />}
                </Stack>
 
                <Group position='apart' mt='xl'>
@@ -170,7 +159,9 @@ function AuthenticationForm(props: PaperProps) {
                         ? 'Already have an account? Login'
                         : 'Don not have an account? Register'}
                   </Anchor>
-                  {submitButton}
+                  <Button onClick={() => console.log(type)} disabled={buttonDisabled} type='submit'>
+                     {upperFirst(type)}
+                  </Button>
                </Group>
             </form>
          </Paper>
