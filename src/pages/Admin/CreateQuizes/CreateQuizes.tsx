@@ -8,24 +8,21 @@ import {
    NumberInput,
    Select,
    SimpleGrid,
-   Text,
    Textarea,
    TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useDebouncedState } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
-import axios from 'axios';
-import { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { TEST_URL } from '../../../api/Api';
 import axiosPrivate from '../../../api/AxiosPrivate';
 import auth from '../../../firebase.init';
 import { ICreateQuizes, QuizType } from '../../../Types/CreateQuizesTypes';
+import Dropzone from '../components/Dropzone';
+import QuestionsPopover from '../components/QuestionsPopover';
 import { useStyles } from './CreateQuizes.style';
-
-const url = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_IMGBB_API_KEY}`;
 
 /*
 TODO: needs to refactor the code because this fil is becoming hugeee!
@@ -33,10 +30,15 @@ TODO: create different component for both dropzone and questions
 *might use zustand for maintaining app state from a central place
 */
 
+type OptionState = {
+   value: string;
+   label: string;
+};
+
 function CreateQuizes() {
    const [questions, setQuestions] = useDebouncedState<QuizType[] | []>([], 1000);
    const [question, setQuestion] = useState('');
-   const [options, setOptions] = useState([{ value: '', label: '' }]);
+   const [options, setOptions] = useState<OptionState[] | []>([]);
    const [answers, setAnswers] = useState<string[] | []>([]);
    const [image, setImage] = useState('');
    const [loading, setLoading] = useState(false);
@@ -68,7 +70,6 @@ function CreateQuizes() {
          ],
       },
    });
-   console.log(questions);
 
    const handleOnQuestionCreate = () => {
       setLoading(true);
@@ -80,12 +81,7 @@ function CreateQuizes() {
       const updatedQuestion = [...questions, getQuestion];
       setQuestions(updatedQuestion);
       setQuestion('');
-      setOptions([
-         {
-            value: '',
-            label: '',
-         },
-      ]);
+      setOptions([]);
 
       showNotification({
          title: 'Question Added successfully',
@@ -99,39 +95,29 @@ function CreateQuizes() {
    const handleOnQuizCreate = async (values: ICreateQuizes) => {
       values.img = image;
       values.quiz = questions;
-      console.log(values);
       const res = await axiosPrivate.post(`${TEST_URL}/quizes/${user?.email}`, values);
-      console.log(res);
+
+      if (res.status === 200) {
+         showNotification({
+            title: 'Congrats!! ',
+            message: 'You created a new quiz',
+         });
+      }
    };
 
-   //* disable add question button
-   const disableAddQuestion = question.length <= 2 || answers.length < 1;
+   const showQuestionsPopover = questions?.map((item) => (
+      <QuestionsPopover
+         item={item}
+         key={item.question}
+         setQuestions={setQuestions}
+         questions={questions}
+      />
+   ));
 
-   //* disable add quiz button until end user adds a question
-   console.log(question.length);
+   const disableAddQuestion = question.length <= 2 || answers.length < 1;
    const disableAddQuiz = questions.length < 1;
 
-   //* settings for dropzone
-   const onDrop = useCallback(async (acceptedFiles: (string | Blob)[]) => {
-      setLoading(true);
-      const formData = new FormData();
-      formData.append('image', acceptedFiles[0]); // has to be named 'image'!
-      const res = await axios.post(url, formData);
-      const imageUrl = res.data.data.url;
-      console.log(imageUrl);
-      setImage(imageUrl);
-      setLoading(false);
-   }, []);
-
-   const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
-      onDrop,
-      accept: {
-         'image/png': ['.png', '.jpeg', '.bmp', '.jpg', '.avif'],
-      },
-   });
-
    // add question our all questions state
-
    const questionInputs = (
       <div>
          <Textarea
@@ -275,16 +261,9 @@ function CreateQuizes() {
                />
 
                <Divider my='lg' label='Add Quiz Question' labelPosition='center' />
+               {showQuestionsPopover}
                {questionInputs}
-               <div className={classes.dropzone} {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  {isDragActive ? (
-                     <p>Drop the files here ...</p>
-                  ) : (
-                     <p>Drag and drop your image here, or click to select files</p>
-                  )}
-                  <Text>{acceptedFiles[0]?.name}</Text>
-               </div>
+               <Dropzone setImage={setImage} />
 
                <Button
                   disabled={disableAddQuiz}
