@@ -52,10 +52,18 @@ function ManageUsers() {
    const showTableInfo = loading ? (
       <Loading />
    ) : (
-      <>
+      <Table
+         striped
+         highlightOnHover
+         horizontalSpacing='md'
+         verticalSpacing='md'
+         captionSide='top'
+         my={20}
+         sx={{ minWidth: 500 }}
+      >
          <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>{theads}</thead>
          <tbody>{rows}</tbody>
-      </>
+      </Table>
    );
 
    return (
@@ -66,17 +74,7 @@ function ManageUsers() {
                sx={{ height: 400 }}
                onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
             >
-               <Table
-                  striped
-                  highlightOnHover
-                  horizontalSpacing='md'
-                  verticalSpacing='md'
-                  captionSide='top'
-                  my={20}
-                  sx={{ minWidth: 500 }}
-               >
-                  {showTableInfo}
-               </Table>
+               {showTableInfo}
             </ScrollArea>
          </Paper>
       </Container>

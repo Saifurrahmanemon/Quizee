@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Login, Logout } from 'tabler-icons-react';
-import QuizeLogo from '../../assets/svg/quizelogo.svg';
+import QuizLogo from '../../assets/svg/quizelogo.svg';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 import { useStyles } from './Navbar.styles';
@@ -16,15 +16,15 @@ function Navbar() {
 
    const navigate = useNavigate();
 
-   const navlinks = admin === true ? adminTabs : tabs;
+   const navLinks = admin === true ? adminTabs : tabs;
 
-   const items = navlinks.map((tab) => (
+   const items = navLinks.map((tab) => (
       <Tabs.Tab value={tab.value} key={tab.value}>
          {tab.label}
       </Tabs.Tab>
    ));
 
-   const signoutUser = user ? (
+   const signOutUser = user ? (
       <Logout onClick={() => signOut(auth)} className={classes.logout} strokeOpacity={1} />
    ) : (
       <Login onClick={() => navigate('/register')} className={classes.login} strokeOpacity={1} />
@@ -33,10 +33,10 @@ function Navbar() {
    return (
       <div className={classes.header}>
          <Container className={classes.mainSection}>
-            <img src={QuizeLogo} className={classes.logo} alt='' />
+            <img src={QuizLogo} className={classes.logo} alt='' />
             <Group position='apart'>
                <Menu width={240} position='bottom-end' transition='pop-top-right'>
-                  {signoutUser}
+                  {signOutUser}
                   <Menu.Target>
                      <UnstyledButton className={cx(classes.user)}>
                         <Group spacing={7}>

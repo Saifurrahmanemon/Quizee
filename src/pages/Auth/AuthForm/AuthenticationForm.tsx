@@ -1,7 +1,6 @@
 import {
    Anchor,
    Button,
-   Checkbox,
    Container,
    Divider,
    Group,
@@ -143,8 +142,6 @@ function AuthenticationForm(props: PaperProps) {
                      {...form.getInputProps('password')}
                      error={form.errors.password && 'Password should include at least 6 characters'}
                   />
-
-                  {type === 'register' && <Checkbox label='I accept terms and conditions' />}
                </Stack>
 
                <Group position='apart' mt='xl'>
