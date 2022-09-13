@@ -17,6 +17,12 @@ import { IQuize } from '../../../Types/QuizesTypes';
 import Timer from '../components/Timer';
 import ShowAnswers from '../ShowAnswers';
 
+/*
+TODO: for you can choose multiple answers not single we can use radio for single answer and checkbox for multiple
+
+
+*/
+
 const useStyles = createStyles((theme) => ({
    rowSelected: {
       backgroundColor:
@@ -41,18 +47,14 @@ function Quiz() {
    const [questions, setQuestions] = useState<IQuize[] | []>([]);
    const [questionNumber, setQuestionNumber] = useState(0);
    const [timeOver, setTimeOver] = useState(true);
-   const [userAnswer, setUserAnswer] = useState<string[] | []>([]);
    const [allQuestionAnswers, setAllQuestionAnswers] = useState<CompareAnswerType[] | []>([]);
    const [showEnd, setShowEnd] = useState(false);
    const [initialUI, setInitialUI] = useState(true);
-   const [loading, setLoading] = useState(false);
-   const [checked, setChecked] = useState(false);
-   const { classes, cx } = useStyles();
-
-   const renderQuestion = questions[questionNumber];
+   const [isLoading, setIsLoading] = useState(false);
+   const [checkedValues, setCheckedValues] = useState<string[]>([]);
 
    useEffect(() => {
-      setLoading(true);
+      setIsLoading(true);
       const getQuiz = async () => {
          const res = await axiosPrivate.get(`${TEST_URL}/quizes/${id}`);
          if (res.status === 200) {
@@ -60,7 +62,7 @@ function Quiz() {
             const minuteToMiliSecond = res.data?.time * 60000;
             setTimer(minuteToMiliSecond);
          }
-         setLoading(false);
+         setIsLoading(false);
       };
 
       getQuiz();
@@ -75,18 +77,22 @@ function Quiz() {
       setInitialUI(false);
    };
 
+   // show question based on question number
+
+   const renderQuestion = questions[questionNumber];
+
    const handleNextQuiz = () => {
       if (questionNumber < questions.length) {
          // check if user answer is correct or not
          const result =
-            userAnswer.length === renderQuestion?.correct.length &&
-            userAnswer.every((value, index) => value === renderQuestion?.correct[index]);
+            checkedValues.length === renderQuestion?.correct.length &&
+            checkedValues.every((value, index) => value === renderQuestion?.correct[index]);
 
          const point = result === true ? 1 : 0;
 
          const compareAnswer = {
             question: renderQuestion?.question,
-            userAnswers: userAnswer,
+            userAnswers: checkedValues,
             correctAnswer: renderQuestion.correct,
             point,
          };
@@ -94,9 +100,10 @@ function Quiz() {
          const updatedAnswers = [...allQuestionAnswers, compareAnswer];
 
          setAllQuestionAnswers(updatedAnswers);
-
          setQuestionNumber((prev) => prev + 1);
+         setCheckedValues([]);
       }
+
       if (questionNumber === questions.length - 1) {
          setTimeOver(true);
          setShowEnd(true);
@@ -104,10 +111,15 @@ function Quiz() {
    };
 
    const displayOptions = renderQuestion?.options.map((option) => (
-      <Checkbox key={option.value} checked={checked} value={option.value} label={option.label} />
+      <Checkbox key={option.value} label={option.label} value={option.value}>
+         {option.label}
+      </Checkbox>
    ));
 
-   const showEndMssge = <ShowAnswers allQuestionAnswers={allQuestionAnswers} />;
+   const showEndResult = <ShowAnswers allQuestionAnswers={allQuestionAnswers} />;
+
+   // if there is multiple answer user can select multiple option
+   const multipleAnswer = renderQuestion?.correct?.length > 1 ? false : true;
 
    const quizInfo = initialUI ? (
       <Paper my={20} radius='md' p='md' withBorder>
@@ -126,7 +138,7 @@ function Quiz() {
          <Text size='sm' color='gray' my={20}>
             Please Chose any question
          </Text>
-         <Checkbox.Group onChange={(value) => setUserAnswer(value)}>
+         <Checkbox.Group value={checkedValues} onChange={setCheckedValues}>
             {displayOptions}
          </Checkbox.Group>
          <Divider my='sm' />
@@ -138,9 +150,18 @@ function Quiz() {
       </>
    );
 
-   const isQuizEnd = showEnd ? showEndMssge : quizInfo;
+   const isQuizEnd = showEnd ? showEndResult : quizInfo;
 
-   const numberOfQuestions = <Text>Number of Question {questions.length} </Text>;
+   const numberOfQuestions = (
+      <>
+         <Text italic span>
+            Number of Questions:{' '}
+         </Text>
+         <Text weight={600} span inline>
+            {questions.length}/{questionNumber}
+         </Text>
+      </>
+   );
 
    return (
       <Container>
@@ -157,7 +178,7 @@ function Quiz() {
                   {numberOfQuestions}
                </Paper>
                <Paper radius='md' p='sm' withBorder>
-                  <Timer time={timer} timeOver={timeOver} setTime={handleTimer}></Timer>
+                  <Timer time={timer} timeOver={timeOver} setTime={handleTimer} />
                </Paper>
             </Group>
             {isQuizEnd}

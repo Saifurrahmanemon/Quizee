@@ -16,5 +16,6 @@ module.exports.postAQuize = asyncHandler(async (req, res) => {
 module.exports.getAQuiz = asyncHandler(async (req, res) => {
    const id = req.params.id;
    const result = await Quizes.findById(id);
+   console.log(result);
    res.status(200).json(result);
 });

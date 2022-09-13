@@ -93,16 +93,21 @@ function CreateQuizes() {
    // push question to our database
 
    const handleOnQuizCreate = async (values: ICreateQuizes) => {
+      setLoading(true);
       values.img = image;
       values.quiz = questions;
       const res = await axiosPrivate.post(`${TEST_URL}/quizes/${user?.email}`, values);
 
       if (res.status === 200) {
          showNotification({
-            title: 'Congrats!! ',
+            title: 'Congrats!! 😃😃 ',
             message: 'You created a new quiz',
          });
+
+         form.reset();
+         setQuestions([]);
       }
+      setLoading(false);
    };
 
    const showQuestionsPopover = questions?.map((item) => (

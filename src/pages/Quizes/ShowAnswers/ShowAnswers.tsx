@@ -23,12 +23,12 @@ function ShowAnswers({ allQuestionAnswers }: ShowAnswersProps) {
          <td>{idx + 1}</td>
          <td>{element.question}</td>
          <td>
-            {element.userAnswers.map((answer) => (
+            {element.userAnswers?.map((answer) => (
                <span key={answer}>{answer}, </span>
             ))}
          </td>
          <td>
-            {element.correctAnswer.map((answer) => (
+            {element.correctAnswer?.map((answer) => (
                <span key={answer}>{answer}, </span>
             ))}
          </td>
