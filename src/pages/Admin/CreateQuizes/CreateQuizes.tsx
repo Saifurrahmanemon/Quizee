@@ -19,16 +19,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { TEST_URL } from '../../../api/Api';
 import axiosPrivate from '../../../api/AxiosPrivate';
 import auth from '../../../firebase.init';
-import { ICreateQuizes, QuizType } from '../../../Types/CreateQuizesTypes';
+import { ICreateQuizes, QuizType } from '../../../types/CreateQuizesTypes';
+
 import Dropzone from '../components/Dropzone';
 import QuestionsPopover from '../components/QuestionsPopover';
 import { useStyles } from './CreateQuizes.style';
-
-/*
-TODO: needs to refactor the code because this fil is becoming hugeee!
-TODO: create different component for both dropzone and questions
-*might use zustand for maintaining app state from a central place
-*/
 
 type OptionState = {
    value: string;

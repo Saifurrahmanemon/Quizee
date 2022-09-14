@@ -1,10 +1,11 @@
 import { Badge, Button, Paper, Text, Title } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { IQuize } from '../../../Types/QuizesTypes';
+import { IQuiz } from '../../../types/QuizesTypes';
+
 import { useStyles } from './QuizCard.style';
 
 type QuizCardProps = {
-   item: IQuize;
+   item: IQuiz;
 };
 
 function QuizCard({ item }: QuizCardProps) {
@@ -12,6 +13,7 @@ function QuizCard({ item }: QuizCardProps) {
    const { classes } = useStyles();
 
    const handleOnClick = (id: string) => {
+      console.log(id);
       navigate(`/quiz/${id}`);
    };
 
