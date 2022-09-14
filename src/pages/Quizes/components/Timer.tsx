@@ -14,7 +14,7 @@ function Timer({ time, timeOver, setTime }: TimerProps) {
       if (timeOver === false) {
          interval = setInterval(() => {
             setTime();
-         }, 1000);
+         }, 1);
       } else if (timeOver === true) {
          clearInterval(interval);
       }

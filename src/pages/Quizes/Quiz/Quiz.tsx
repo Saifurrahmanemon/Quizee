@@ -44,9 +44,7 @@ function Quiz() {
          if (res.status === 200) {
             setQuestions(res.data.quiz);
             setQuestionsInfo(res.data);
-            console.log(res?.data.time);
             const millisecond = MinToMilliConvertor(res.data?.time);
-            console.log(millisecond);
             setTimer(millisecond);
          }
          setIsLoading(false);
@@ -100,6 +98,13 @@ function Quiz() {
          setTimeOver(true);
       }
    };
+
+   // if the user does not submit answer then this code will move user to next quiz
+   if (timer === 0) {
+      handleNextQuiz();
+      const millisecond = MinToMilliConvertor(questionsInfo?.time);
+      setTimer(millisecond);
+   }
 
    // if there is multiple answer user can select multiple option
    // const multipleAnswer = renderQuestion?.correct?.length > 1 ? false : true;
