@@ -1,7 +1,8 @@
 import { ICreateQuizes } from './CreateQuizesTypes';
 
-export interface IQuize extends ICreateQuizes {
+export interface IQuiz extends ICreateQuizes {
    correct: string[] | [];
+   countDownType: string;
    question: '';
    _id: string;
    __v: string;

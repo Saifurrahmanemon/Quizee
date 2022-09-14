@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { TEST_URL } from '../../api/Api';
 import axiosPrivate from '../../api/AxiosPrivate';
 import Loading from '../../components/Loading';
-import { IQuize } from '../../Types/QuizesTypes';
+import { IQuiz } from '../../types/QuizesTypes';
 import QuizCard from './QuizCard/QuizCard';
 
 function Quizes() {
@@ -27,7 +27,7 @@ function Quizes() {
    const theme = useMantineTheme();
    const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
-   const slides = quizes?.map((item: IQuize) => (
+   const slides = quizes?.map((item: IQuiz) => (
       <Carousel.Slide key={item._id}>
          <QuizCard item={item} />
       </Carousel.Slide>
