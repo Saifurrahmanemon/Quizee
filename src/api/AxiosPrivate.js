@@ -1,32 +1,27 @@
-import axios from 'axios';
+import Axios from 'axios';
+import { TEST_URL } from './Api';
 
-const axiosPrivate = axios.create({});
+function authRequestInterceptor(config) {
+   const token = localStorage.getItem('accessToken');
+   if (token) {
+      config.headers.authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+   }
+   config.headers.Accept = 'application/json';
+   return config;
+}
 
-axiosPrivate.interceptors.request.use(
-   function (config) {
-      // Do something before request is sent
-      if (!config.headers.authorization) {
-         config.headers.authorization = `Bearer ${localStorage.getItem('accessToken')}`;
-      }
-      return config;
-   },
-   function (error) {
-      // Do something with request error
-      console.log(error);
-   },
-);
+const axios = Axios.create({
+   baseURL: TEST_URL,
+});
 
-// Add a response interceptor
-axiosPrivate.interceptors.response.use(
-   function (response) {
-      // Any status code that lie within the range of 2xx cause this function to trigger
-      // Do something with response data
-
+axios.interceptors.request.use(authRequestInterceptor);
+axios.interceptors.response.use(
+   (response) => {
       return response;
    },
-   function (error) {
+   (error) => {
+      console.log(error);
       return Promise.reject(error);
    },
 );
-
-export default axiosPrivate;
+export default axios;

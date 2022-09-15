@@ -34,7 +34,13 @@
       "spaced-comment": "error",
       "quotes": ["error", "single"],
       "no-duplicate-imports": "error",
-      "@typescript-eslint/no-var-requires": "off"
+      "@typescript-eslint/no-var-requires": "off",
+      "no-restricted-imports": [
+         "error",
+         {
+            "patterns": ["/components/*/*"]
+         }
+      ]
    },
    "settings": {
       "import/resolver": {

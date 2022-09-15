@@ -1,19 +1,18 @@
 import { Button, Center, Checkbox, Container, Divider, Group, Paper, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TEST_URL } from '../../../api/Api';
-import axiosPrivate from '../../../api/AxiosPrivate';
+import axios from '../../../api/AxiosPrivate';
+
 import Loading from '../../../components/Loading';
 import { IQuiz } from '../../../types/QuizesTypes';
-
-import { MinToMilliConvertor } from '../../../utils';
+import MinToMilliConvertor from '../../../utils/MinToMilliConvertor';
 import Timer from '../components/Timer';
 import ShowAnswers from '../ShowAnswers';
 
 /*
 TODO: for you can choose multiple answers not single we can use radio for single answer and checkbox for multiple
 
-
+TODO: Admin can set up if user can see answers as they submit the quiz or they need to wait until the end of the quiz questions
 */
 
 export type CompareAnswerType = {
@@ -22,8 +21,6 @@ export type CompareAnswerType = {
    correctAnswer: string[] | [];
    point: number;
 };
-
-//* aaaah!! this component is getting too nasty, poor performance
 
 function Quiz() {
    const { id } = useParams();
@@ -37,10 +34,12 @@ function Quiz() {
    const [isLoading, setIsLoading] = useState(false);
    const [checkedValues, setCheckedValues] = useState<string[]>([]);
 
+   const showTimerPerQuestion = questionsInfo?.countDownType === 'question';
+
    useEffect(() => {
       setIsLoading(true);
       const getQuiz = async () => {
-         const res = await axiosPrivate.get(`${TEST_URL}/quizes/${id}`);
+         const res = await axios.get(`/quizes/${id}`);
          if (res.status === 200) {
             setQuestions(res.data.quiz);
             setQuestionsInfo(res.data);
@@ -89,7 +88,7 @@ function Quiz() {
          setCheckedValues([]);
       }
 
-      if (questionsInfo?.countDownType === 'question') {
+      if (showTimerPerQuestion) {
          const millisecond = MinToMilliConvertor(questionsInfo?.time);
          setTimer(millisecond);
       }
@@ -99,11 +98,20 @@ function Quiz() {
       }
    };
 
-   // if the user does not submit answer then this code will move user to next quiz
-   if (timer === 0) {
+   // if the user does not submit answer then this code will move user to next quiz(timer for per question)
+   if (timer === 0 && showTimerPerQuestion) {
       handleNextQuiz();
-      const millisecond = MinToMilliConvertor(questionsInfo?.time);
-      setTimer(millisecond);
+
+      if (questionsInfo?.time !== undefined) {
+         const millisecond = MinToMilliConvertor(questionsInfo?.time);
+         setTimer(millisecond);
+      }
+   }
+
+   // this is for Whole question if time is over auto submit all question..
+
+   if (timer === 0 && !showTimerPerQuestion) {
+      handleNextQuiz();
    }
 
    // if there is multiple answer user can select multiple option

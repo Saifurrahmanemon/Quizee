@@ -16,9 +16,9 @@ import { useDebouncedState } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { TEST_URL } from '../../../api/Api';
-import axiosPrivate from '../../../api/AxiosPrivate';
-import auth from '../../../firebase.init';
+import axios from '../../../api/AxiosPrivate';
+
+import auth from '../../../config/firebase.init';
 import { ICreateQuizes, QuizType } from '../../../types/CreateQuizesTypes';
 
 import Dropzone from '../components/Dropzone';
@@ -91,7 +91,7 @@ function CreateQuizes() {
       setLoading(true);
       values.img = image;
       values.quiz = questions;
-      const res = await axiosPrivate.post(`${TEST_URL}/quizes/${user?.email}`, values);
+      const res = await axios.post(`/quizes/${user?.email}`, values);
 
       if (res.status === 200) {
          showNotification({

@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { UserCredential } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import { TEST_URL } from '../api/Api';
+import axios from '../api/AxiosPrivate';
 
 export type UserProps = UserCredential | null | undefined;
 
@@ -18,7 +17,7 @@ const useToken = (user: UserProps) => {
          };
 
          if (email) {
-            const res = await axios.put(`${TEST_URL}/users/${email}`, userInfo);
+            const res = await axios.put(`/users/${email}`, userInfo);
             // set token to state to get access
             setToken(res.data.accessToken);
             localStorage.setItem('accessToken', res.data.accessToken);

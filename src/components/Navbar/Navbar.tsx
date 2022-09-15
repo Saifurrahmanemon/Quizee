@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Login, Logout } from 'tabler-icons-react';
 import QuizLogo from '../../assets/svg/quizelogo.svg';
-import auth from '../../firebase.init';
+import auth from '../../config/firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 import { useStyles } from './Navbar.styles';
 import { adminTabs, tabs } from './util';
