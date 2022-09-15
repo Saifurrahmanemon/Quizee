@@ -23,7 +23,8 @@ import {
 } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import GoogleButton from '../../../components/SocialButtons';
-import auth from '../../../firebase.init';
+import auth from '../../../config/firebase.init';
+
 import useToken from '../../../hooks/useToken';
 
 type FormProps = {

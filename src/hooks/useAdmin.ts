@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import { TEST_URL } from '../api/Api';
+import axios from '../api/AxiosPrivate';
 
 type AdminProps = User | null | undefined;
 
@@ -13,7 +12,7 @@ const useAdmin = (user: AdminProps) => {
       const getAdmin = () => {
          const email = user?.email;
          if (email) {
-            axios.get(`${TEST_URL}/admins/${email}`).then((res) => {
+            axios.get(`/admins/${email}`).then((res) => {
                if (res.status === 200) {
                   setAdmin(res.data.admin);
                }

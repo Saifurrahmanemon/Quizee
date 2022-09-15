@@ -2,7 +2,6 @@ import { Carousel } from '@mantine/carousel';
 import { Container, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
-import { TEST_URL } from '../../api/Api';
 import axiosPrivate from '../../api/AxiosPrivate';
 import Loading from '../../components/Loading';
 import { IQuiz } from '../../types/QuizesTypes';
@@ -15,7 +14,9 @@ function Quizes() {
    useEffect(() => {
       setLoading(true);
       const getQuizzes = async () => {
-         const res = await axiosPrivate.get(`${TEST_URL}/quizes`);
+         const res = await axiosPrivate.get('/quizes');
+         console.log(res);
+
          if (res.status === 200) {
             setQuizes(res.data);
          }
