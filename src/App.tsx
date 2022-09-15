@@ -4,14 +4,14 @@ import Navbar from './components/Navbar';
 import Router from './routes';
 
 function App() {
-   return (
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-         <NotificationsProvider>
-            <Navbar />
-            <Router />
-         </NotificationsProvider>
-      </MantineProvider>
-   );
+	return (
+		<MantineProvider withGlobalStyles withNormalizeCSS>
+			<NotificationsProvider>
+				<Navbar />
+				<Router />
+			</NotificationsProvider>
+		</MantineProvider>
+	);
 }
 
 export default App;

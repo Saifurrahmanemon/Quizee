@@ -2,11 +2,11 @@ import { Button, ButtonProps } from '@mantine/core';
 import { GoogleIcon } from './GoogleIcon';
 
 interface GoogleButtonProps extends ButtonProps {
-   onClick: () => Promise<void>;
+	onClick: () => Promise<void>;
 }
 
 export default function GoogleButton(props: GoogleButtonProps) {
-   return <Button leftIcon={<GoogleIcon />} variant='default' color='gray' {...props} />;
+	return <Button leftIcon={<GoogleIcon />} variant='default' color='gray' {...props} />;
 }
 
 // ? for future use
