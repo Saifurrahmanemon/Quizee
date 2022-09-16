@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router-dom';
-
 import RequireAdmin from '../components/RequireAuth/RequireAdmin';
+
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import CreateQuizes from '../pages/Admin/CreateQuizes';
 import ManageUsers from '../pages/Admin/ManageUsers';

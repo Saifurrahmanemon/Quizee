@@ -2,7 +2,6 @@ import { Button, Checkbox, Container, Divider, Group, Paper, Text } from '@manti
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../../../api/AxiosPrivate';
-
 import Loading from '../../../components/Loading';
 import { IQuiz } from '../../../types/QuizesTypes';
 import MinToMilliConvertor from '../../../utils/MinToMilliConvertor';
