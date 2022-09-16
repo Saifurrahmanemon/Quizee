@@ -1,10 +1,10 @@
 import Banner from '../../components/Banner';
 
 function Home() {
-   return (
-      <>
-         <Banner />
-      </>
-   );
+	return (
+		<>
+			<Banner />
+		</>
+	);
 }
 export default Home;

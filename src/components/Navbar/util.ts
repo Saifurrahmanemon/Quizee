@@ -1,7 +1,7 @@
 export const user = {
-   name: 'Saifur Rahman',
-   email: 'saif@fighter.dev',
-   image: '',
+	name: 'Saifur Rahman',
+	email: 'saif@fighter.dev',
+	image: '',
 };
 
 /*
@@ -25,22 +25,22 @@ export const user = {
 */
 
 export const adminTabs = [
-   {
-      value: 'home',
-      label: 'Home',
-   },
-   {
-      value: 'manageusers',
-      label: 'Manage Users',
-   },
-   {
-      value: 'createquizes',
-      label: 'Create Quizes',
-   },
-   {
-      value: 'managequizes',
-      label: 'Manage Quizes',
-   },
+	{
+		value: 'home',
+		label: 'Home',
+	},
+	{
+		value: 'manageusers',
+		label: 'Manage Users',
+	},
+	{
+		value: 'createquizes',
+		label: 'Create Quizes',
+	},
+	{
+		value: 'managequizes',
+		label: 'Manage Quizes',
+	},
 ];
 
 /*
@@ -57,16 +57,16 @@ export const adminTabs = [
 */
 
 export const tabs = [
-   {
-      value: 'home',
-      label: 'Home',
-   },
-   {
-      value: 'quizes',
-      label: 'Quizes',
-   },
-   {
-      value: 'settings',
-      label: 'Settings',
-   },
+	{
+		value: 'home',
+		label: 'Home',
+	},
+	{
+		value: 'quizes',
+		label: 'Quizes',
+	},
+	{
+		value: 'settings',
+		label: 'Settings',
+	},
 ];
