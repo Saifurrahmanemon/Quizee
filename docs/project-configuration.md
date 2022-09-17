@@ -2,8 +2,7 @@
 
 The application has been bootstrapped using `Create React App` for simplicity reasons. It allows us to create applications quickly without dealing with a complex tooling setup such as bundling, transpiling etc.
 
-You should always configure and use the following tools:
-
+=======
 #### ESLint
 
 ESLint is a linting tool for JavaScript. By providing specific configuration defined in the`.eslintrc` file it prevents developers from making silly mistakes in their code and enforces consistency in the codebase.
@@ -31,14 +30,11 @@ Absolute imports should always be configured and used because it makes it easier
 For TypeScript (`tsconfig.json`) projects:
 
 ```json
-"compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+{
+	"compilerOptions": {
+		"baseUrl": "src"
+	},
+	"include": ["src"]
+}
 ```
 
-[Paths Configuration Example Code](../tsconfig.paths.json)
-
-In this project we have to create another tsconfig file `tsconfig.paths.json` where we configure the paths and merge it with the base configuration, because CRA will override it otherwise.

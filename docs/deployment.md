@@ -1,8 +1,5 @@
 # 🌐 Deployment
 
-Deploy and serve your applications and assets over a CDN for best delivery and performance. Good options for that are:
+Right Server is deployed on [Heroku](https://dashboard.heroku.com/) free tier. <br> Eventually Server will be deployed on [Render](https://render.com/docs).<br>
+Frontend is deployed on [Firebase](firebase.google.com)
 
--  [Vercel](https://vercel.com/)
--  [Netlify](https://www.netlify.com/)
--  [AWS](https://aws.amazon.com/cloudfront/)
--  [CloudFlare](https://www.cloudflare.com/en-gb/cdn/)
