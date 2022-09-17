@@ -31,6 +31,7 @@ Prerequisites:
 - Node 14+
 - Yarn 1.22+
 
+
 To set up the app execute the following commands.
 
 ```bash
