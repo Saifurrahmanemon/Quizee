@@ -3,7 +3,7 @@ import CreateQuizes from 'pages/Admin/CreateQuizes';
 import ManageUsers from 'pages/Admin/ManageUsers';
 import Home from 'pages/Home';
 import Quizes from 'pages/Quizes';
-import Quiz from 'pages/Quizes/Quiz';
+import Quiz from 'pages/Quiz';
 import { useRoutes } from 'react-router-dom';
 
 import AuthenticationForm from '../pages/Auth';

@@ -1,6 +1,6 @@
 import { Button, Group, Table } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { CompareAnswerType } from '../Quiz/Quiz';
+import { CompareAnswerType } from '../../../Quiz/Quiz';
 
 type ShowAnswersProps = {
 	allQuestionAnswers: CompareAnswerType[] | [];
