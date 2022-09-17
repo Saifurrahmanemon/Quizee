@@ -14,6 +14,9 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { upperFirst, useToggle } from '@mantine/hooks';
+import GoogleButton from 'components/SocialButtons';
+import auth from 'config/firebase.init';
+import useToken from 'hooks/useToken';
 import { useEffect } from 'react';
 import {
 	useCreateUserWithEmailAndPassword,
@@ -22,10 +25,6 @@ import {
 	useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
-import GoogleButton from '../../../components/SocialButtons';
-import auth from '../../../config/firebase.init';
-
-import useToken from '../../../hooks/useToken';
 
 type FormProps = {
 	email: string;

@@ -1,9 +1,9 @@
 import { Text } from '@mantine/core';
 import axios from 'axios';
+import Loading from 'components/Loading';
+import { useStyles } from 'pages/Admin/CreateQuizes/CreateQuizes.style';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Loading from '../../../../components/Loading';
-import { useStyles } from '../../CreateQuizes/CreateQuizes.style';
 
 const url = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_IMGBB_API_KEY}`;
 

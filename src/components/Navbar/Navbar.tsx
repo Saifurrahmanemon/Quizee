@@ -1,11 +1,11 @@
 import { Avatar, Container, Group, Menu, Tabs, Text, UnstyledButton } from '@mantine/core';
+import QuizLogo from 'assets/svg/quizelogo.svg';
+import auth from 'config/firebase.init';
 import { signOut } from 'firebase/auth';
+import useAdmin from 'hooks/useAdmin';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Login, Logout } from 'tabler-icons-react';
-import QuizLogo from '../../assets/svg/quizelogo.svg';
-import auth from '../../config/firebase.init';
-import useAdmin from '../../hooks/useAdmin';
 import { useStyles } from './Navbar.styles';
 import { adminTabs, tabs } from './util';
 
@@ -46,12 +46,7 @@ function Navbar() {
 										radius='xl'
 										size={16}
 									/>
-									<Text
-										weight={500}
-										size='xs'
-										sx={{ lineHeight: 1, color: theme.white }}
-										mr={3}
-									>
+									<Text weight={500} size='xs' sx={{ lineHeight: 1, color: theme.white }} mr={3}>
 										{user?.displayName || 'Guest'}
 									</Text>
 								</Group>

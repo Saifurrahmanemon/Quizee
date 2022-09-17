@@ -1,10 +1,9 @@
 import { Container, Paper, ScrollArea, Table } from '@mantine/core';
+import axios from 'api/AxiosPrivate';
+import Loading from 'components/Loading';
+import auth from 'config/firebase.init';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import axios from '../../../api/AxiosPrivate';
-
-import Loading from '../../../components/Loading';
-import auth from '../../../config/firebase.init';
 import { useStyles } from './ManageUsers.style';
 
 type UserType = {
@@ -70,10 +69,7 @@ function ManageUsers() {
 		<Container>
 			<Paper shadow='xs' p='md' my={20}>
 				{' '}
-				<ScrollArea
-					sx={{ height: 400 }}
-					onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
-				>
+				<ScrollArea sx={{ height: 400 }} onScrollPositionChange={({ y }) => setScrolled(y !== 0)}>
 					{showTableInfo}
 				</ScrollArea>
 			</Paper>

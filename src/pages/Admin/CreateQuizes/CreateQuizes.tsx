@@ -14,15 +14,14 @@ import {
 import { useForm } from '@mantine/form';
 import { useDebouncedState } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
+import axios from 'api/AxiosPrivate';
+import auth from 'config/firebase.init';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import axios from '../../../api/AxiosPrivate';
-
-import auth from '../../../config/firebase.init';
-import { ICreateQuizes, QuizType } from '../../../types/CreateQuizesTypes';
-
+import { ICreateQuizes, QuizType } from 'types/CreateQuizesTypes';
 import Dropzone from '../components/Dropzone';
 import QuestionsPopover from '../components/QuestionsPopover';
+
 import { useStyles } from './CreateQuizes.style';
 
 type OptionState = {
