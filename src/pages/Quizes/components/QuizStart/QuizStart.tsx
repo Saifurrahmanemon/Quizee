@@ -7,6 +7,7 @@ type QuizStartProps = {
 };
 
 function QuizStart({ toShowAnswer, handleQuizStart, retakes: remainingRetakes }: QuizStartProps) {
+
 	return (
 		<>
 			<Paper my={20} radius='md' p='md' withBorder>

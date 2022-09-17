@@ -2,6 +2,7 @@
 
 The application has been bootstrapped using `Create React App` for simplicity reasons. It allows us to create applications quickly without dealing with a complex tooling setup such as bundling, transpiling etc.
 
+=======
 #### ESLint
 
 ESLint is a linting tool for JavaScript. By providing specific configuration defined in the`.eslintrc` file it prevents developers from making silly mistakes in their code and enforces consistency in the codebase.
@@ -36,3 +37,4 @@ For TypeScript (`tsconfig.json`) projects:
 	"include": ["src"]
 }
 ```
+

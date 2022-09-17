@@ -12,6 +12,7 @@ Admin can create quizzes(with distinct features will be discussed later),manage 
 
 The application contains the following models:
 
+
 - User - can have one of these roles:
 
   - `ADMIN` can:
@@ -24,12 +25,14 @@ The application contains the following models:
     - read quizzes and quiz
     - create/delete purchase quizzes
 
+
 ## Get Started
 
 Prerequisites:
 
 - Node 14+
 - Yarn 1.22+
+
 
 To set up the app execute the following commands.
 

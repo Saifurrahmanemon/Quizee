@@ -1,14 +1,17 @@
 # QUIZEE 🚀🚀
 
+
 Quizee is a free and open-source full stack quiz application that lets user play free and paid quizzes and authorized admins can create,update, manage and calculate revenue 💰💸
 
 ## Introduction
 
 The goal of this project(Development in progress) is to get familiar with professional workflow and good practices when developing real world applications. The project architecture is based on [Bulletproof React](https://github.com/alan2207/bulletproof-react) and [Trunk-Based Development](https://trunkbaseddevelopment.com/#scaled-trunk-based-development)
 
+
 Feel free to explore the codebase to get the most value out of the repo.
 
 ## Table Of Contents:
+
 
 - [💻 Application Overview](docs/application-overview.md)
 - [🔨 Stack Overview](docs/stack-overview.md)
