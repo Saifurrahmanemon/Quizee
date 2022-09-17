@@ -1,11 +1,11 @@
 import { Carousel } from '@mantine/carousel';
 import { Container, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import axiosPrivate from 'api/AxiosPrivate';
+import Loading from 'components/Loading';
 import { useEffect, useState } from 'react';
-import axiosPrivate from '../../../api/AxiosPrivate';
-import Loading from '../../../components/Loading';
-import { IQuiz } from '../../../types/QuizesTypes';
-import QuizCard from '.././QuizCard/QuizCard';
+import { IQuiz } from 'types/QuizesTypes';
+import QuizCard from '../QuizCard/QuizCard';
 
 function Quizes() {
 	const [quizes, setQuizes] = useState([]);

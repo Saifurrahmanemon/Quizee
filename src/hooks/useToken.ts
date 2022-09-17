@@ -1,6 +1,6 @@
+import axios from 'api/AxiosPrivate';
 import { UserCredential } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import axios from '../api/AxiosPrivate';
 
 export type UserProps = UserCredential | null | undefined;
 

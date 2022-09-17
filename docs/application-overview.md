@@ -12,7 +12,6 @@ Admin can create quizzes(with distinct features will be discussed later),manage 
 
 The application contains the following models:
 
-
 - User - can have one of these roles:
 
   - `ADMIN` can:
@@ -24,7 +23,6 @@ The application contains the following models:
   - `USER` - can:
     - read quizzes and quiz
     - create/delete purchase quizzes
-
 
 ## Get Started
 

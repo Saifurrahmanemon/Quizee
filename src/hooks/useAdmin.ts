@@ -1,6 +1,6 @@
+import axios from 'api/AxiosPrivate';
 import { User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import axios from '../api/AxiosPrivate';
 
 type AdminProps = User | null | undefined;
 

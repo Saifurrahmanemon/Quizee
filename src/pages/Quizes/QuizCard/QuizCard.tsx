@@ -1,7 +1,6 @@
 import { Badge, Button, Paper, Text, Title } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { IQuiz } from '../../../types/QuizesTypes';
-
+import { IQuiz } from 'types/QuizesTypes';
 import { useStyles } from './QuizCard.style';
 
 type QuizCardProps = {
