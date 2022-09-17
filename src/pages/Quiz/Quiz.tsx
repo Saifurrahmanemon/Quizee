@@ -1,4 +1,4 @@
-import { Button, Checkbox, Container, Divider, Group, Paper, Text } from '@mantine/core';
+import { Container, Group, Paper, Text } from '@mantine/core';
 import axios from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
 import { useEffect, useState } from 'react';
@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom';
 import { IQuiz } from 'types/QuizesTypes';
 import MinToMilliConvertor from 'utils/MinToMilliConvertor';
 import whenToShowAnswer from 'utils/whenToShowAnswer';
-import QuizStart from '../components/QuizStart';
-import Timer from '../components/Timer';
-import ShowAnswers from '../ShowAnswers';
+import DisplayQuiz from './components/DisplayQuiz';
+import QuizStart from './components/QuizStart';
+import ShowAnswers from './components/ShowAnswers';
+import Timer from './components/Timer';
 
 /*
 TODO: for you can choose multiple answers not single we can use radio for single answer and checkbox for multiple
@@ -48,9 +49,15 @@ function Quiz() {
 	const [initialUI, setInitialUI] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 	const [checkedValues, setCheckedValues] = useState<string[]>([]);
+	const [isCheckboxDisabled, setIsCheckboxDisabled] = useState(false);
+
+	console.log(questionsInfo?.showAnswer);
 
 	// when to show answer
 	const showAnswer = whenToShowAnswer(questionsInfo?.showAnswer);
+
+	const showAnswerPerQuestion = questionsInfo?.showAnswer === 'afterQuestion';
+
 	// timer answer per question
 	const showTimerPerQuestion = questionsInfo?.countDownType === 'question';
 	// show question based on question number
@@ -88,6 +95,11 @@ function Quiz() {
 		setInitialUI(false);
 	};
 
+	// this will show the answer if the answer type is per question
+	const handleShowAnswer = () => {
+		setIsCheckboxDisabled(true);
+	};
+
 	const handleNextQuiz = () => {
 		if (questionNumber < questions.length) {
 			// check if user answer is correct or not
@@ -109,6 +121,7 @@ function Quiz() {
 			setAllQuestionAnswers(updatedAnswers);
 			setQuestionNumber((prev) => prev + 1);
 			setCheckedValues([]);
+			setIsCheckboxDisabled(false);
 		}
 
 		if (showTimerPerQuestion) {
@@ -137,12 +150,6 @@ function Quiz() {
 		handleNextQuiz();
 	}
 
-	const displayOptions = renderQuestion?.options.map((option, idx) => (
-		<Checkbox key={`${option.value} ${idx}`} label={option.label} value={option.value}>
-			{option.label}
-		</Checkbox>
-	));
-
 	const quizInfo = initialUI ? (
 		<QuizStart
 			toShowAnswer={showAnswer}
@@ -150,23 +157,18 @@ function Quiz() {
 			handleQuizStart={handleQuizStart}
 		/>
 	) : (
-		<>
-			<Paper my={20} radius='md' p='md' withBorder>
-				<Text> {renderQuestion?.question}</Text>
-			</Paper>
-			<Text size='sm' color='gray' my={20}>
-				Please Chose any question
-			</Text>
-			<Checkbox.Group value={checkedValues} onChange={setCheckedValues}>
-				{displayOptions}
-			</Checkbox.Group>
-			<Divider my='sm' />
-			<Group position='right'>
-				<Button disabled={isSelected} onClick={handleNextQuiz} variant='gradient' px={20}>
-					Next
-				</Button>
-			</Group>
-		</>
+		<DisplayQuiz
+			{...{
+				renderQuestion,
+				isCheckboxDisabled,
+				checkedValues,
+				setCheckedValues,
+				isSelected,
+				handleNextQuiz,
+				handleShowAnswer,
+				showAnswerPerQuestion,
+			}}
+		/>
 	);
 
 	// if Quiz end then show Quiz end UI
@@ -182,7 +184,7 @@ function Quiz() {
 			{isLoading ? (
 				<Loading />
 			) : (
-				<Paper radius='md' withBorder p='lg'>
+				<Paper mt={50} radius='md' withBorder p='lg'>
 					<Group position='apart'>
 						<Paper radius='md' p='md' withBorder>
 							<Text italic span>

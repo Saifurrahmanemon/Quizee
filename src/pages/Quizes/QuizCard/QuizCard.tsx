@@ -12,7 +12,6 @@ function QuizCard({ item }: QuizCardProps) {
 	const { classes } = useStyles();
 
 	const handleOnClick = (id: string) => {
-		console.log(id);
 		navigate(`/quiz/${id}`);
 	};
 
