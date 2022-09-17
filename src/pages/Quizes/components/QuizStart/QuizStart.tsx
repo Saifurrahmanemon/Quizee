@@ -1,5 +1,4 @@
 import { Button, Group, Paper, SimpleGrid, Stack, Text, Title } from '@mantine/core';
-import { useStyles } from './QuizStart.style';
 
 type QuizStartProps = {
 	toShowAnswer: string | undefined;
@@ -8,7 +7,6 @@ type QuizStartProps = {
 };
 
 function QuizStart({ toShowAnswer, handleQuizStart, retakes: remainingRetakes }: QuizStartProps) {
-	const { classes } = useStyles();
 	return (
 		<>
 			<Paper my={20} radius='md' p='md' withBorder>
