@@ -50,7 +50,7 @@ function ShowAnswers({ allQuestionAnswers }: ShowAnswersProps) {
 				<tbody>{rows}</tbody>
 			</Table>
 			<Group my={10} position='center'>
-				<Button onClick={() => navigate('/quizes')}>Go Back to Quizzes</Button>
+				<Button onClick={() => navigate('/quizzes')}>Go Back to Quizzes</Button>
 			</Group>
 		</>
 	);

@@ -33,7 +33,7 @@ In order to scale the application in the easiest and most maintainable way, most
 A page could have the following structure:
 
 ```sh
-src/pages/Quizes
+src/pages/Quizzes
 |
 +-- components  # components that can be shared through the page
 |

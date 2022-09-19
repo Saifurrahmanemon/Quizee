@@ -18,18 +18,18 @@ import axios from 'api/AxiosPrivate';
 import auth from 'config/firebase.init';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { ICreateQuizes, QuizType } from 'types/CreateQuizesTypes';
+import { ICreateQuizzes, QuizType } from 'types/CreateQuizzesTypes';
 import Dropzone from '../components/Dropzone';
 import QuestionsPopover from '../components/QuestionsPopover';
 
-import { useStyles } from './CreateQuizes.style';
+import { useStyles } from './CreateQuizzes.style';
 
 type OptionState = {
 	value: string;
 	label: string;
 };
 
-function CreateQuizes() {
+function CreateQuizzes() {
 	const [questions, setQuestions] = useDebouncedState<QuizType[] | []>([], 1000);
 	const [question, setQuestion] = useState('');
 	const [options, setOptions] = useState<OptionState[] | []>([]);
@@ -39,7 +39,7 @@ function CreateQuizes() {
 	const [user] = useAuthState(auth);
 	const { classes } = useStyles();
 
-	const form = useForm<ICreateQuizes>({
+	const form = useForm<ICreateQuizzes>({
 		initialValues: {
 			name: '',
 			description: '',
@@ -86,11 +86,11 @@ function CreateQuizes() {
 
 	// push question to our database
 
-	const handleOnQuizCreate = async (values: ICreateQuizes) => {
+	const handleOnQuizCreate = async (values: ICreateQuizzes) => {
 		setLoading(true);
 		values.img = image;
 		values.quiz = questions;
-		const res = await axios.post(`/quizes/${user?.email}`, values);
+		const res = await axios.post(`/quizzes/${user?.email}`, values);
 
 		if (res.status === 200) {
 			showNotification({
@@ -170,7 +170,7 @@ function CreateQuizes() {
 	return (
 		<Container>
 			<Box my={20} px='xs'>
-				<h1>Add Quizes:</h1>
+				<h1>Add Quizzes:</h1>
 				<form onSubmit={form.onSubmit(handleOnQuizCreate)}>
 					<SimpleGrid cols={2}>
 						<div className='left'>
@@ -282,4 +282,4 @@ function CreateQuizes() {
 	);
 }
 
-export default CreateQuizes;
+export default CreateQuizzes;

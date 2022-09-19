@@ -1,6 +1,6 @@
-import { ICreateQuizes } from './CreateQuizesTypes';
+import { ICreateQuizzes } from './CreateQuizzesTypes';
 
-export interface IQuiz extends ICreateQuizes {
+export interface IQuiz extends ICreateQuizzes {
 	correct: string[] | [];
 	countDownType: string;
 	question: '';

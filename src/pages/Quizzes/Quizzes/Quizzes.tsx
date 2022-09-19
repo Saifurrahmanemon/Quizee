@@ -4,19 +4,19 @@ import { useMediaQuery } from '@mantine/hooks';
 import axiosPrivate from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
 import { useEffect, useState } from 'react';
-import { IQuiz } from 'types/QuizesTypes';
+import { IQuiz } from 'types/QuizzesTypes';
 import QuizCard from '../QuizCard/QuizCard';
 
-function Quizes() {
-	const [quizes, setQuizes] = useState([]);
+function Quizzes() {
+	const [quizzes, setQuizzes] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
 		const getQuizzes = async () => {
-			const res = await axiosPrivate.get('/quizes');
+			const res = await axiosPrivate.get('/quizzes');
 			if (res.status === 200) {
-				setQuizes(res.data);
+				setQuizzes(res.data);
 			}
 			setLoading(false);
 		};
@@ -26,7 +26,7 @@ function Quizes() {
 	const theme = useMantineTheme();
 	const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
-	const slides = quizes?.map((item: IQuiz) => (
+	const slides = quizzes?.map((item: IQuiz) => (
 		<Carousel.Slide key={item._id}>
 			<QuizCard item={item} />
 		</Carousel.Slide>
@@ -51,4 +51,4 @@ function Quizes() {
 	);
 }
 
-export default Quizes;
+export default Quizzes;

@@ -1,9 +1,9 @@
 import { RequireAdmin, RequireAuth } from 'components/RequireAuth';
-import CreateQuizes from 'pages/Admin/CreateQuizes';
+import CreateQuizzes from 'pages/Admin/CreateQuizzes';
 import ManageUsers from 'pages/Admin/ManageUsers';
 import Home from 'pages/Home';
-import Quizes from 'pages/Quizes';
 import Quiz from 'pages/Quiz';
+import Quizzes from 'pages/Quizzes';
 import { useRoutes } from 'react-router-dom';
 
 import AuthenticationForm from '../pages/Auth';
@@ -19,10 +19,10 @@ const Router = () => {
 			element: <Home />,
 		},
 		{
-			path: '/quizes',
+			path: '/quizzes',
 			element: (
 				<RequireAuth>
-					<Quizes />
+					<Quizzes />
 				</RequireAuth>
 			),
 		},
@@ -35,10 +35,10 @@ const Router = () => {
 			),
 		},
 		{
-			path: '/createquizes',
+			path: '/createquizzes',
 			element: (
 				<RequireAdmin>
-					<CreateQuizes />
+					<CreateQuizzes />
 				</RequireAdmin>
 			),
 		},
