@@ -7,7 +7,7 @@ export type QuizType = {
 	correct: string[];
 };
 
-export interface ICreateQuizes {
+export interface ICreateQuizzes {
 	name: string;
 	description: string;
 	img: string;

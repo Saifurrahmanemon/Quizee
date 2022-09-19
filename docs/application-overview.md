@@ -1,8 +1,8 @@
 # 💻 Application Overview
 
-The application is pretty complex.
+The application is a bit complex.
 
-Users can play ready made quizzes and won exciting prices. There are two types of quizzes free and paid. for paid user have to pay certain amount of money and ask for refund if user wants. user also can manage all of there paid quiz.Quiz it self have some distinct features(will be discussed later).
+Users can play ready made quizzes and won exciting prices. There are two types of quizzes free and paid. for paid quizzes, user have to pay certain amount of money in order to access those quiz and user can ask for refund if user wants. User also can manage all of there paid quiz.Quiz it self have some distinct features(will be discussed later).
 
 Admin can create quizzes(with distinct features will be discussed later),manage quizzes, manage users, make refund if he think user's refund application is valid and also can work with revenue data.
 
@@ -30,7 +30,6 @@ Prerequisites:
 
 - Node 14+
 - Yarn 1.22+
-
 
 To set up the app execute the following commands.
 

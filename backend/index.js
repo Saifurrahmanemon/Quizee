@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dbConnect = require('./utils/dbconnect');
 require('dotenv').config();
-const quizesRoutes = require('./routes/v1/quizes.route');
+const quizzesRoutes = require('./routes/v1/quizzes.route');
 const usersRoutes = require('./routes/v1/users.route');
 const adminsRoutes = require('./routes/v1/admins.route');
 const ordersRoutes = require('./routes/v1/orders.route');
@@ -16,7 +16,7 @@ app.use(express.json());
 
 dbConnect();
 
-app.use('/api/v1/quizes', quizesRoutes);
+app.use('/api/v1/quizzes', quizzesRoutes);
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/orders', ordersRoutes);
 app.use('/api/v1/admins', adminsRoutes);

@@ -6,7 +6,8 @@ import useGetOrder from 'hooks/useGetOrder';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
-import { IQuiz } from 'types/QuizesTypes';
+import { IQuiz } from 'types/QuizzesTypes';
+
 import MinToMilliConvertor from 'utils/MinToMilliConvertor';
 import whenToShowAnswer from 'utils/whenToShowAnswer';
 import { updateOrder } from './api';
@@ -79,7 +80,7 @@ function Quiz() {
 	useEffect(() => {
 		setIsLoading(true);
 		const getQuiz = async () => {
-			const res = await axios.get(`/quizes/${id}`);
+			const res = await axios.get(`/quizzes/${id}`);
 			if (res.status === 200) {
 				setQuestions(res.data.quiz);
 				setQuestionsInfo(res.data);

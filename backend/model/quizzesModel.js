@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const quizesScheme = mongoose.Schema({
+const quizzesScheme = mongoose.Schema({
 	name: String,
 	description: String,
 	img: String,
@@ -24,4 +24,4 @@ const quizesScheme = mongoose.Schema({
 	],
 });
 
-module.exports = mongoose.model('Quizes', quizesScheme);
+module.exports = mongoose.model('Quizzes', quizzesScheme);

@@ -1,7 +1,7 @@
 import { Text } from '@mantine/core';
 import axios from 'axios';
 import Loading from 'components/Loading';
-import { useStyles } from 'pages/Admin/CreateQuizes/CreateQuizes.style';
+import { useStyles } from 'pages/Admin/CreateQuizzes/CreateQuizzes.style';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 

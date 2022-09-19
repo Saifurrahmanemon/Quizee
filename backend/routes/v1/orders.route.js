@@ -12,9 +12,9 @@ router
 	 */
 	.get(verifyJWT, ordersController.getAOrder)
 	/**
-	 * @desc check if user is a admin
+	 * @desc create or update single quiz info based on user email
 	 * @route get api/v1/admins
-	 * @access private
+	 * @access private user
 	 */
 	.put(ordersController.putAOrder);
 
