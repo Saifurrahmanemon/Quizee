@@ -10,9 +10,17 @@ type QuizCardProps = {
 function QuizCard({ item }: QuizCardProps) {
 	const navigate = useNavigate();
 	const { classes } = useStyles();
-
+	/**
+	 * check if quiz is paid or not
+	 * if paid then check if user paid for this quiz
+	 * if not then show the please pay modal
+	 */
 	const handleOnClick = (id: string) => {
-		navigate(`/quiz/${id}`);
+		if (item.status === 'paid') {
+			console.log('you need to pay for this quiz');
+		} else if (item.status === 'free') {
+			navigate(`/quiz/${id}`);
+		}
 	};
 
 	return (

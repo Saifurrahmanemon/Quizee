@@ -15,8 +15,6 @@ function Quizes() {
 		setLoading(true);
 		const getQuizzes = async () => {
 			const res = await axiosPrivate.get('/quizes');
-			console.log(res);
-
 			if (res.status === 200) {
 				setQuizes(res.data);
 			}

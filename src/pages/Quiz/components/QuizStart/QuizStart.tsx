@@ -7,6 +7,7 @@ type QuizStartProps = {
 };
 
 function QuizStart({ toShowAnswer, handleQuizStart, retakes: remainingRetakes }: QuizStartProps) {
+	const isDisabled = remainingRetakes === 0;
 	return (
 		<>
 			<Paper my={20} radius='md' p='md' withBorder>
@@ -17,7 +18,13 @@ function QuizStart({ toShowAnswer, handleQuizStart, retakes: remainingRetakes }:
 					</Group>
 					<Stack my={30} align='center'>
 						<Text weight={500}> Play Start Button When You Are Ready</Text>
-						<Button variant='outline' px={30} onClick={handleQuizStart} mx={30}>
+						<Button
+							disabled={isDisabled}
+							variant='outline'
+							px={30}
+							onClick={handleQuizStart}
+							mx={30}
+						>
 							Start
 						</Button>
 					</Stack>
