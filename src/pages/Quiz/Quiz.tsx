@@ -55,7 +55,6 @@ function Quiz() {
 	const [checkedValues, setCheckedValues] = useState<string[]>([]);
 	const [isCheckboxDisabled, setIsCheckboxDisabled] = useState(false);
 	const [user] = useAuthState(auth);
-
 	const { order } = useGetOrder(user?.email, id);
 
 	// when to show answer
@@ -123,8 +122,7 @@ function Quiz() {
 		const order = {
 			retakes: decrementRetakes,
 		};
-		const res = await updateOrder(user?.email, id, order);
-		console.log(res);
+		await updateOrder(user?.email, id, order);
 		setIsRetakesOver(true);
 	};
 

@@ -18,7 +18,6 @@ function QuizCard({ item }: QuizCardProps) {
 	const { classes } = useStyles();
 	const [user] = useAuthState(auth);
 	const { order } = useGetOrder(user?.email, item._id);
-
 	/**
 	 * check if quiz is paid or not
 	 * if paid then check if user paid for this quiz
@@ -26,7 +25,7 @@ function QuizCard({ item }: QuizCardProps) {
 	 */
 	const handleOnClick = (id: string) => {
 		if (item.status === 'paid') {
-			!order ? setOpened(true) : navigate(`/quiz/${id}`);
+			order?.paid === true ? navigate(`/quiz/${id}`) : setOpened(true);
 		}
 		// quiz is free no need to validate wether user paid for this quiz or not
 		if (item.status === 'free') {
