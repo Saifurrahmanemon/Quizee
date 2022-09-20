@@ -3,10 +3,10 @@ import axios from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
 import auth from 'config/firebase.init';
 import useGetOrder from 'hooks/useGetOrder';
+import { IQuiz } from 'pages/shared/types';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
-import { IQuiz } from 'types/QuizzesTypes';
 
 import MinToMilliConvertor from 'utils/MinToMilliConvertor';
 import whenToShowAnswer from 'utils/whenToShowAnswer';
@@ -17,25 +17,22 @@ import QuizStart from './components/QuizStart';
 import ShowAnswers from './components/ShowAnswers';
 import Timer from './components/Timer';
 
-/*
-TODO: for you can choose multiple answers not single we can use radio for single answer and checkbox for multiple
-
-?this points are a bit ambiguous:
-!retake in terms of single question or whole quiz.
-!which answer will be count after retake latest one right?
-
-? I guess user can for the case answer is after retake users can not see all questions after quiz one option will appear wether to retake the quiz or not if user click retake one retake will be decremented and at the end result will be shown right?
-
-*Admin can set up if user can see answers as they submit the quiz or they need to wait until the end of the quiz questions
-
-*Admin can set if user can see their correct answers as they submit a quiz answer or they have to wait until the end of the all questions
-
-*Admin can set number of retake a user can take.
-*Admin can set if users should see the answer at the end of submission, or as they answer the question or they cannot see until all retake is taken
-
-TODO:Answer can be revealed after all the retake is taken or user can choose himself to reveal the answer at the end of the quiz and this will have make a user’s available retake to 0 so that he cannot take any retake
-
-*/
+/**
+ * TODO: for you can choose multiple answers not single we can use radio for single answer and checkbox for multiple
+ *
+ *?this points are a bit ambiguous:
+ *!retake in terms of single question or whole quiz.
+ *!which answer will be count after retake latest one right?
+ *
+ * There are 3 types of showAnswer: 'after Question', 'after submission' , 'after Retakes
+ * for after question user will have option to see answer after every quiz
+ *
+ * for after submission answer will be shown after all questions
+ *
+ * fpr after retakes answers will be shown after user finish all of their retakes or user will have
+ * option finish their all retakes in exchange to see the quiz answers
+ *
+ */
 
 export type CompareAnswerType = {
 	question: string;

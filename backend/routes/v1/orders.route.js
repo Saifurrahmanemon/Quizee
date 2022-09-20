@@ -16,6 +16,6 @@ router
 	 * @route get api/v1/admins
 	 * @access private user
 	 */
-	.put(ordersController.putAOrder);
+	.put(verifyJWT, ordersController.putAOrder);
 
 module.exports = router;

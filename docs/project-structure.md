@@ -28,7 +28,7 @@ src
 +-- utils             # shared utility functions
 ```
 
-In order to scale the application in the easiest and most maintainable way, most of the code inside the `pages` folder, which contain view for different routes. Every `pages` folder contain domain specific code for a given page.
+In order to scale the application in the easiest and most maintainable way, most of the code inside the `pages` folder, which contain view for different routes. Every `pages` folder contain domain specific code for a given page and `shared` folder inside `pages` contains shared code across these components such as types, styles, components.
 
 A page could have the following structure:
 

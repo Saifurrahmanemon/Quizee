@@ -1,6 +1,11 @@
-import { Badge, Button, Paper, Text, Title } from '@mantine/core';
+import { Badge, Button, Container, Group, Mark, Modal, Paper, Text, Title } from '@mantine/core';
+import auth from 'config/firebase.init';
+import useGetOrder from 'hooks/useGetOrder';
+import { IQuiz } from 'pages/shared/types';
+import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { IQuiz } from 'types/QuizzesTypes';
+
 import { useStyles } from './QuizCard.style';
 
 type QuizCardProps = {
@@ -8,8 +13,12 @@ type QuizCardProps = {
 };
 
 function QuizCard({ item }: QuizCardProps) {
+	const [opened, setOpened] = useState(false);
 	const navigate = useNavigate();
 	const { classes } = useStyles();
+	const [user] = useAuthState(auth);
+	const { order } = useGetOrder(user?.email, item._id);
+
 	/**
 	 * check if quiz is paid or not
 	 * if paid then check if user paid for this quiz
@@ -17,11 +26,41 @@ function QuizCard({ item }: QuizCardProps) {
 	 */
 	const handleOnClick = (id: string) => {
 		if (item.status === 'paid') {
-			console.log('you need to pay for this quiz');
-		} else if (item.status === 'free') {
+			!order ? setOpened(true) : navigate(`/quiz/${id}`);
+		}
+		// quiz is free no need to validate wether user paid for this quiz or not
+		if (item.status === 'free') {
 			navigate(`/quiz/${id}`);
 		}
 	};
+
+	const showModal = (
+		<Modal
+			opened={opened}
+			centered
+			overlayOpacity={0.55}
+			size='lg'
+			overlayBlur={3}
+			onClose={() => setOpened(false)}
+			title='Quiz Info'
+		>
+			<Container>
+				<Text my='lg' size='lg' weight={400}>
+					Sorry!! You can not play &apos;{item.name}&apos; quiz because this is a paid quiz. But the
+					good news is this quiz is only <Mark>${item?.price}</Mark>.
+				</Text>
+				<Text weight={500}> Do you want to purchase this quiz?</Text>
+				<Group position='right' mt='sm' mb='xs'>
+					<Button color='red' size='md' onClick={() => setOpened(false)}>
+						Cancel
+					</Button>
+					<Button color='indigo' size='md' onClick={() => navigate(`/payment/${item._id}`)}>
+						Proceed
+					</Button>
+				</Group>
+			</Container>
+		</Modal>
+	);
 
 	return (
 		<Paper
@@ -31,6 +70,7 @@ function QuizCard({ item }: QuizCardProps) {
 			sx={{ backgroundImage: `url(${item.img})` }}
 			className={classes.card}
 		>
+			{showModal}
 			<div>
 				<Text className={classes.category} size='xs'>
 					{item.name}

@@ -1,6 +1,6 @@
 import { ActionIcon, Button, createStyles, Popover, Text } from '@mantine/core';
 import { IconTrash } from '@tabler/icons';
-import { QuizType } from 'types/CreateQuizzesTypes';
+import { QuizType } from 'pages/shared/types';
 
 export const useStyles = createStyles(() => ({
 	actionIcon: {

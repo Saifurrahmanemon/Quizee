@@ -16,9 +16,9 @@ import { useDebouncedState } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import axios from 'api/AxiosPrivate';
 import auth from 'config/firebase.init';
+import { ICreateQuizzes, QuizType } from 'pages/shared/types';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { ICreateQuizzes, QuizType } from 'types/CreateQuizzesTypes';
 import Dropzone from '../components/Dropzone';
 import QuestionsPopover from '../components/QuestionsPopover';
 

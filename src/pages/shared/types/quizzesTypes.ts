@@ -1,4 +1,4 @@
-import { ICreateQuizzes } from './CreateQuizzesTypes';
+import { ICreateQuizzes } from './createQuizzesTypes';
 
 export interface IQuiz extends ICreateQuizzes {
 	correct: string[] | [];
