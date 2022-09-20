@@ -10,6 +10,8 @@
 		"@mantine/form": "^5.2.4",
 		"@mantine/hooks": "^5.2.4",
 		"@mantine/notifications": "^5.2.6",
+		"@stripe/react-stripe-js": "^1.10.0",
+		"@stripe/stripe-js": "^1.36.0",
 		"@tabler/icons": "^1.92.0",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^13.0.0",

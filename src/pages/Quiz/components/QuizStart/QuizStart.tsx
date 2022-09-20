@@ -3,11 +3,11 @@ import { Button, Group, Paper, SimpleGrid, Stack, Text, Title } from '@mantine/c
 type QuizStartProps = {
 	toShowAnswer: string | undefined;
 	handleQuizStart: () => void;
-	retakes: number | undefined;
+	retakes: number;
 };
 
 function QuizStart({ toShowAnswer, handleQuizStart, retakes: remainingRetakes }: QuizStartProps) {
-	const isDisabled = remainingRetakes === 0;
+	const isDisabled = remainingRetakes <= 0;
 	return (
 		<>
 			<Paper my={20} radius='md' p='md' withBorder>

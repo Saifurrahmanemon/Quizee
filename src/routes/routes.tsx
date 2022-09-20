@@ -2,6 +2,7 @@ import { RequireAdmin, RequireAuth } from 'components/RequireAuth';
 import CreateQuizzes from 'pages/Admin/CreateQuizzes';
 import ManageUsers from 'pages/Admin/ManageUsers';
 import Home from 'pages/Home';
+import Payment from 'pages/Payment';
 import Quiz from 'pages/Quiz';
 import Quizzes from 'pages/Quizzes';
 import { useRoutes } from 'react-router-dom';
@@ -53,6 +54,14 @@ const Router = () => {
 		{
 			path: '/register',
 			element: <AuthenticationForm />,
+		},
+		{
+			path: '/payment/:id',
+			element: (
+				<RequireAuth>
+					<Payment />
+				</RequireAuth>
+			),
 		},
 	]);
 };

@@ -7,15 +7,21 @@ router
 	.route('/:email/:id')
 	/**
 	 * @desc get quiz info for individual user
-	 * @route PUT api/v1/admins
+	 * @route PUT api/v1/orders
 	 * @access private user
 	 */
 	.get(verifyJWT, ordersController.getAOrder)
 	/**
 	 * @desc create or update single quiz info based on user email
-	 * @route get api/v1/admins
+	 * @route get api/v1/orders
 	 * @access private user
 	 */
-	.put(ordersController.putAOrder);
+	.put(verifyJWT, ordersController.putAOrder)
+	/**
+	 * @desc update status of quiz and insert transaction id
+	 * @route patch api/v1/orders
+	 * @access private user
+	 */
+	.patch(verifyJWT, ordersController.updateAOrder);
 
 module.exports = router;

@@ -1,5 +1,5 @@
+import { IQuiz } from 'pages/shared/types';
 import { Dispatch, SetStateAction } from 'react';
-import { IQuiz } from 'types/QuizzesTypes';
 
 export type DisplayQuizProps = {
 	renderQuestion: IQuiz;

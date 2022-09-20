@@ -20,7 +20,7 @@ function DisplayQuiz({
 
 	const answers = renderQuestion?.correct as string[];
 
-	const displayOptions = renderQuestion?.options.map((option, idx) => {
+	const displayOptions = renderQuestion?.options.map((option, idx: number) => {
 		const showLabels = isCheckboxDisabled ? (
 			answers.indexOf(option.value) === -1 ? (
 				<Text color='red' strikethrough>

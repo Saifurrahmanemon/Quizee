@@ -3,8 +3,9 @@ import { Container, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import axiosPrivate from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
+import { IQuiz } from 'pages/shared/types';
 import { useEffect, useState } from 'react';
-import { IQuiz } from 'types/QuizzesTypes';
+
 import QuizCard from '../QuizCard/QuizCard';
 
 function Quizzes() {
