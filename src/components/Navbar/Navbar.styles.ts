@@ -1,11 +1,15 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
+	root: {
+		position: 'relative',
+		zIndex: 1,
+	},
 	header: {
-		backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor })
-			.background,
+		paddingTop: theme.spacing.sm,
+		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 		borderBottom: `1px solid ${
-			theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background
+			theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]
 		}`,
 		marginBottom: 10,
 	},
@@ -17,28 +21,31 @@ export const useStyles = createStyles((theme) => ({
 	},
 
 	user: {
-		color: theme.white,
+		color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
 		padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
 		borderRadius: theme.radius.sm,
 		transition: 'background-color 100ms ease',
 
 		'&:hover': {
-			backgroundColor: theme.fn.lighten(
-				theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
-				0.1
-			),
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
 		},
 
-		[theme.fn.smallerThan('xs')]: {
+		[theme.fn.smallerThan('sm')]: {
 			display: 'none',
 		},
 	},
 
 	burger: {
-		[theme.fn.largerThan('xs')]: {
+		[theme.fn.largerThan('sm')]: {
 			display: 'none',
 		},
 	},
+
+	dropdownTabs: {
+		display: 'flex',
+		flexDirection: 'column',
+	},
+
 	link: {
 		display: 'block',
 		lineHeight: 1,
@@ -51,8 +58,7 @@ export const useStyles = createStyles((theme) => ({
 		fontWeight: 500,
 
 		'&:hover': {
-			backgroundColor:
-				theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 		},
 
 		[theme.fn.smallerThan('sm')]: {
@@ -68,7 +74,11 @@ export const useStyles = createStyles((theme) => ({
 		),
 	},
 
-	tabs: {},
+	tabs: {
+		[theme.fn.smallerThan('sm')]: {
+			display: 'none',
+		},
+	},
 
 	tabsList: {
 		borderBottom: '0 !important',
@@ -79,11 +89,11 @@ export const useStyles = createStyles((theme) => ({
 
 	logout: {
 		cursor: 'pointer',
-		color: theme.colors.red[9],
+		color: theme.colors.red[7],
 	},
 	login: {
 		cursor: 'pointer',
-		color: theme.white,
+		color: theme.colors.indigo[9],
 	},
 
 	dropdown: {
@@ -96,35 +106,31 @@ export const useStyles = createStyles((theme) => ({
 		borderTopLeftRadius: 0,
 		borderTopWidth: 0,
 		overflow: 'hidden',
-
 		[theme.fn.largerThan('sm')]: {
 			display: 'none',
 		},
 	},
 
+	logoThemeContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: 10,
+	},
+
 	tab: {
 		fontWeight: 500,
 		height: 38,
-		color: theme.white,
 		backgroundColor: 'transparent',
-		borderColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
 
 		'&:hover': {
-			backgroundColor: theme.fn.lighten(
-				theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
-				0.1
-			),
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
 		},
 
 		'&[data-active]': {
-			backgroundColor: theme.fn.lighten(
-				theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
-				0.1
-			),
-			borderColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
-		},
-		[theme.fn.smallerThan('xs')]: {
-			fontSize: theme.spacing.xs,
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+			borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2],
 		},
 	},
 }));
