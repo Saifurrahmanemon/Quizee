@@ -56,7 +56,7 @@ function DisplayQuiz({
 			<Paper my={20} radius='md' p='md' withBorder>
 				<Text> {renderQuestion?.question}</Text>
 			</Paper>
-			<Text size='sm' color='gray' my={20}>
+			<Text size='sm' color='gray' key={renderQuestion?._id} my={20}>
 				Please chose your answer:
 			</Text>
 			<Checkbox.Group value={checkedValues} onChange={setCheckedValues}>

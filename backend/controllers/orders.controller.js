@@ -9,6 +9,13 @@ module.exports.getAOrder = asyncHandler(async (req, res) => {
 	res.send(result);
 });
 
+module.exports.getUserOrders = asyncHandler(async (req, res) => {
+	const email = req.params.email;
+	const filter = { email: email, paid: true };
+	const result = await Orders.find(filter);
+	res.send(result);
+});
+
 module.exports.putAOrder = asyncHandler(async (req, res) => {
 	const order = req.body;
 	const email = req.params.email;
@@ -33,13 +40,7 @@ module.exports.updateAOrder = asyncHandler(async (req, res) => {
 	const id = req.params.id;
 	const filter = { email: email, quizId: id };
 	const options = { upsert: true, new: true };
-	const update = {
-		paid: true,
-		transactionId: payment.transactionId,
-		retakes: payment.retakes,
-	};
 	// Find the document
-	const result = await Orders.findOneAndUpdate(filter, update, options);
-
+	const result = await Orders.findOneAndUpdate(filter, payment, options);
 	res.send({ result });
 });

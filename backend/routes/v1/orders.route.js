@@ -24,4 +24,6 @@ router
 	 */
 	.patch(verifyJWT, ordersController.updateAOrder);
 
+router.get('/:email', ordersController.getUserOrders);
+
 module.exports = router;

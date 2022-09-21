@@ -10,6 +10,6 @@ router
 	 * @route post api/v1/admins
 	 * @access private user
 	 */
-	.post(paymentController.stripePay);
+	.post(verifyJWT, paymentController.stripePay);
 
 module.exports = router;
