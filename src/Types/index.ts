@@ -1,6 +1,7 @@
 export type BaseEntity = {
-	id: string;
-	createdAt: number;
+	id?: string;
+	createdAt?: string;
+	updatedAt?: string;
 };
 
 export type Email = string | null | undefined;

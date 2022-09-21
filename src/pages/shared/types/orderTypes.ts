@@ -1,9 +1,13 @@
-export interface IOrder {
-	email?: string | null | undefined;
-	quizId?: string | undefined;
-	quizName?: string | undefined;
+import { BaseEntity } from 'types';
+
+export type IOrder = {
+	email?: string | null;
+	quizId?: string;
+	quizName?: string;
 	retakes?: number;
-	price?: number | undefined;
-	status?: string | undefined;
-	transactionId?: string | undefined;
-}
+	lastScore?: string;
+	paid?: boolean;
+	price?: number;
+	status?: string;
+	transactionId?: string;
+} & BaseEntity;

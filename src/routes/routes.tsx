@@ -5,8 +5,8 @@ import Home from 'pages/Home';
 import Payment from 'pages/Payment';
 import Quiz from 'pages/Quiz';
 import Quizzes from 'pages/Quizzes';
+import Settings from 'pages/Settings';
 import { useRoutes } from 'react-router-dom';
-
 import AuthenticationForm from '../pages/Auth';
 const Router = () => {
 	return useRoutes([
@@ -24,6 +24,14 @@ const Router = () => {
 			element: (
 				<RequireAuth>
 					<Quizzes />
+				</RequireAuth>
+			),
+		},
+		{
+			path: '/settings',
+			element: (
+				<RequireAuth>
+					<Settings />
 				</RequireAuth>
 			),
 		},

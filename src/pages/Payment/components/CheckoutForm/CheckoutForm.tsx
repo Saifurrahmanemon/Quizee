@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { Button, createStyles, Group, Modal, Text } from '@mantine/core';
+import { Button, Group, Modal, Text } from '@mantine/core';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'api/AxiosPrivate';
 import auth from 'config/firebase.init';
@@ -12,16 +12,16 @@ type CheckoutFormProps = {
 	quiz: IQuiz | null;
 };
 
-const useStyles = createStyles((theme) => ({
-	text: {
-		color: theme.colors.green,
-		fontSize: theme.fontSizes.sm,
+// const useStyles = createStyles((theme) => ({
+// 	text: {
+// 		color: theme.colors.green,
+// 		fontSize: theme.fontSizes.sm,
 
-		[theme.fn.smallerThan('sm')]: {
-			fontSize: theme.fontSizes.xs,
-		},
-	},
-}));
+// 		[theme.fn.smallerThan('sm')]: {
+// 			fontSize: theme.fontSizes.xs,
+// 		},
+// 	},
+// }));
 
 const CheckoutForm = ({ quiz }: CheckoutFormProps) => {
 	const stripe = useStripe();
@@ -67,6 +67,7 @@ const CheckoutForm = ({ quiz }: CheckoutFormProps) => {
 		}
 
 		// Use your card Element with other Stripe.js APIs
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { error, paymentMethod } = await stripe.createPaymentMethod({
 			type: 'card',
 			card,
@@ -98,9 +99,12 @@ const CheckoutForm = ({ quiz }: CheckoutFormProps) => {
 			const payment = {
 				quizId: quiz?._id,
 				price: quiz?.price,
+				quizName: quiz?.name,
+				paid: true,
 				retakes: quiz?.retake,
 				transactionId: paymentIntent.id,
 			};
+			console.log('payment details', payment);
 
 			const res = await axios.patch(`/orders/${email}/${quiz?._id}`, payment);
 			if (res) {
