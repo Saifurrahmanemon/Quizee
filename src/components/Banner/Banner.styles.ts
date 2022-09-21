@@ -4,8 +4,7 @@ export const useStyles = createStyles((theme) => ({
 	wrapper: {
 		position: 'relative',
 		paddingTop: 120,
-		paddingBottom: 80,
-
+		paddingBottom: 60,
 		'@media (max-width: 755px)': {
 			paddingTop: 80,
 			paddingBottom: 60,

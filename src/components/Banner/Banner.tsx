@@ -15,7 +15,7 @@ function Banner() {
 	);
 
 	return (
-		<Container className={classes.wrapper} size={1400}>
+		<Container className={classes.wrapper} size={1300}>
 			{showDots}
 			<div className={classes.inner}>
 				<Title className={classes.title}>
