@@ -33,4 +33,8 @@ export const useStyles = createStyles((theme) => ({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 	},
+	bodyText: {
+		color: theme.white,
+		marginLeft: 7,
+	},
 }));

@@ -126,7 +126,7 @@ function Quiz() {
 		setIsRetakesOver(true);
 	};
 
-	const handleNextQuiz = () => {
+	const handleNextQuiz = async () => {
 		if (questionNumber < questions.length) {
 			// check if user answer is correct or not
 			const result =
@@ -156,6 +156,14 @@ function Quiz() {
 		}
 
 		if (questionNumber === questions.length - 1) {
+			// increment submission
+			const subs = questionsInfo?.submissions as number;
+			const updatesSubmissions = questionsInfo?.submissions === undefined ? 1 : subs + 1;
+			const body = {
+				submissions: updatesSubmissions,
+			};
+			const res = await axios.put(`/quizzes/${id}`, body);
+			console.log(res);
 			setTimeOver(true);
 		}
 	};
@@ -172,7 +180,7 @@ function Quiz() {
 		}
 	}
 
-	/*
+	/**
 	 *this is for Whole question if time is over auto submit all question..
 	 */
 	if (timer === 0 && !showTimerPerQuestion) {

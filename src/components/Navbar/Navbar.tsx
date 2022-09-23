@@ -6,6 +6,7 @@ import {
 	Group,
 	Menu,
 	Paper,
+	ScrollArea,
 	Tabs,
 	Text,
 	Transition,
@@ -64,21 +65,25 @@ function Navbar() {
 					</div>
 					<Group position='apart'>
 						<Burger opened={opened} onClick={toggle} className={classes.burger} size='sm' />
+
 						<Transition transition='pop-top-right' duration={200} mounted={opened}>
 							{(styles) => (
 								<Paper className={classes.dropdown} withBorder style={styles}>
-									<Tabs
-										variant='outline'
-										classNames={{
-											tab: classes.link,
-										}}
-										onTabChange={handleOnDropDown}
-									>
-										<Tabs.List>{items}</Tabs.List>
-									</Tabs>
+									<ScrollArea>
+										<Tabs
+											variant='outline'
+											classNames={{
+												tab: classes.link,
+											}}
+											onTabChange={handleOnDropDown}
+										>
+											<Tabs.List>{items}</Tabs.List>
+										</Tabs>
+									</ScrollArea>
 								</Paper>
 							)}
 						</Transition>
+
 						<Menu width={240} position='bottom-end' transition='pop-top-right'>
 							{signOutUser}
 							<Menu.Target>

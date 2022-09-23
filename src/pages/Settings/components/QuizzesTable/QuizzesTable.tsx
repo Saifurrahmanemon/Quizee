@@ -1,15 +1,43 @@
 import { Badge, Button, Container, Group, Paper, ScrollArea, Table, Text } from '@mantine/core';
+import auth from 'config/firebase.init';
+import { updateOrder } from 'pages/Quiz/api';
 import { IOrder } from 'pages/shared/types';
+import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { ReportMoney } from 'tabler-icons-react';
+import { Id } from 'types';
 
 interface UsersTableProps {
 	quizzes: IOrder[];
+	refetch: () => void;
 }
 
-function QuizzesTables({ quizzes }: UsersTableProps) {
-	const handleOnRefund = () => {
-		console.log('ready refund');
+function QuizzesTables({ quizzes, refetch }: UsersTableProps) {
+	const [loading, setLoading] = useState(false);
+	const [user] = useAuthState(auth);
+
+	const handleOnRefund = async (id: Id) => {
+		setLoading(true);
+		const status = 'PENDING' as const;
+		const order = {
+			refund: status,
+		};
+		await updateOrder(user?.email, id, order);
+		setLoading(false);
+		refetch();
 	};
+
+	const pendingBadge = (
+		<Badge color='red' variant='light'>
+			Pending
+		</Badge>
+	);
+
+	const refundedBadge = (
+		<Badge color='indigo' variant='outline'>
+			Refunded
+		</Badge>
+	);
 
 	const rows = quizzes.map((item) => (
 		<tr key={item?.quizName}>
@@ -37,15 +65,22 @@ function QuizzesTables({ quizzes }: UsersTableProps) {
 				</Badge>
 			</td>
 			<td>
-				<Button
-					onClick={handleOnRefund}
-					compact
-					leftIcon={<ReportMoney size={16} />}
-					size='sm'
-					variant='light'
-				>
-					Request
-				</Button>
+				{item?.refund === 'PENDING' ? (
+					pendingBadge
+				) : item?.refund === 'REFUNDED' ? (
+					refundedBadge
+				) : (
+					<Button
+						loading={loading}
+						onClick={() => handleOnRefund(item?.quizId)}
+						compact
+						leftIcon={<ReportMoney size={16} />}
+						size='sm'
+						variant='light'
+					>
+						Request
+					</Button>
+				)}
 			</td>
 		</tr>
 	));
@@ -64,7 +99,7 @@ function QuizzesTables({ quizzes }: UsersTableProps) {
 		<Container>
 			<Paper shadow='xs' p='md' my={40}>
 				<ScrollArea>
-					<Table sx={{ minWidth: 800 }} verticalSpacing='sm' horizontalSpacing='xs'>
+					<Table sx={{ minWidth: 800 }} verticalSpacing='md' horizontalSpacing='xs'>
 						<thead>{theads}</thead>
 						<tbody>{rows}</tbody>
 					</Table>

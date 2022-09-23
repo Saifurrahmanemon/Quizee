@@ -7,6 +7,7 @@ export type IOrder = {
 	retakes?: number;
 	lastScore?: string;
 	paid?: boolean;
+	refund?: 'PENDING' | 'REFUNDED';
 	price?: number;
 	status?: string;
 	transactionId?: string;

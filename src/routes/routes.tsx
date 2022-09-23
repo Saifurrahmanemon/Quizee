@@ -1,5 +1,6 @@
 import { RequireAdmin, RequireAuth } from 'components/RequireAuth';
 import CreateQuizzes from 'pages/Admin/CreateQuizzes';
+import Dashboard from 'pages/Admin/Dashboard';
 import ManageUsers from 'pages/Admin/ManageUsers';
 import Home from 'pages/Home';
 import Payment from 'pages/Payment';
@@ -56,6 +57,14 @@ const Router = () => {
 			element: (
 				<RequireAdmin>
 					<ManageUsers />
+				</RequireAdmin>
+			),
+		},
+		{
+			path: '/dashboard',
+			element: (
+				<RequireAdmin>
+					<Dashboard />
 				</RequireAdmin>
 			),
 		},

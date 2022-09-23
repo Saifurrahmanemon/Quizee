@@ -1,9 +1,7 @@
 import { Container, Paper, ScrollArea, Table } from '@mantine/core';
-import axios from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
-import auth from 'config/firebase.init';
-import { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import useUsers from 'hooks/useUsers';
+import { useState } from 'react';
 import { useStyles } from './ManageUsers.style';
 
 type UserType = {
@@ -13,24 +11,9 @@ type UserType = {
 };
 
 function ManageUsers() {
-	const [users, setUsers] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [user] = useAuthState(auth);
 	const [scrolled, setScrolled] = useState(false);
 	const { classes, cx } = useStyles();
-
-	useEffect(() => {
-		setLoading(true);
-		const getQuiz = async () => {
-			const res = await axios.get(`/users/${user?.email}`);
-			if (res.status === 200) {
-				setUsers(res.data);
-			}
-			setLoading(false);
-		};
-
-		getQuiz();
-	}, []);
+	const { users, loading } = useUsers();
 
 	const theads = (
 		<tr>

@@ -13,7 +13,7 @@ const useToken = (user: UserProps) => {
 			const email = info?.email;
 			const userInfo = {
 				email,
-				name: info?.displayName,
+				name: user?.user.displayName,
 			};
 
 			if (email) {

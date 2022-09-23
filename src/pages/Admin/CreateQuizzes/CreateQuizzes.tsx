@@ -46,6 +46,7 @@ function CreateQuizzes() {
 			img: '',
 			status: '',
 			retake: 0,
+			submissions: 0,
 			countDownType: '',
 			showAnswer: '',
 			price: 0,

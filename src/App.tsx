@@ -7,7 +7,7 @@ import Router from './routes';
 
 function App() {
 	// for changing theme
-	const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
+	const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
 
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));

@@ -8,6 +8,7 @@ export type QuizType = {
 };
 
 export interface ICreateQuizzes {
+	submissions: number;
 	name: string;
 	description: string;
 	img: string;
