@@ -10,7 +10,7 @@ function Footer() {
 		<div className={classes.footer}>
 			<Container className={classes.inner}>
 				<Text color='dimmed' size='sm'>
-					{year} mantine.dev. All rights reserved.
+					{year} Quizee.dev. All rights reserved.
 				</Text>
 				<Group spacing={0} className={classes.links} position='right' noWrap>
 					<ActionIcon size='lg'>

@@ -2,6 +2,19 @@ const express = require('express');
 const ordersController = require('../../controllers/orders.controller');
 const router = express.Router();
 const verifyJWT = require('../../middleware/verifyJWT');
+/**
+ * @desc get all paid orders
+ * @route PUT api/v1/orders
+ * @access private admin
+ */
+router.get('/paid', verifyJWT, ordersController.getPaidOrders);
+
+/**
+ * @desc get all paid users
+ * @route PUT api/v1/orders
+ * @access private admin
+ */
+router.get('/users', verifyJWT, ordersController.getPaidUsers);
 
 router
 	.route('/:email/:id')
@@ -23,7 +36,11 @@ router
 	 * @access private user
 	 */
 	.patch(verifyJWT, ordersController.updateAOrder);
-
-router.get('/:email', ordersController.getUserOrders);
+/**
+ * @desc paid orders for a user
+ * @route patch api/v1/orders
+ * @access private user
+ */
+router.get('/:email', verifyJWT, ordersController.getUserOrders);
 
 module.exports = router;

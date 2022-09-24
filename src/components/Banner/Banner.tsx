@@ -8,14 +8,14 @@ function Banner() {
 	const showDots = (
 		<>
 			<Dots className={classes.dots} style={{ left: 0, top: 0 }} />
-			<Dots className={classes.dots} style={{ left: 60, top: 0 }} />
+			<Dots className={classes.dots} style={{ left: 500, top: 0 }} />
 			<Dots className={classes.dots} style={{ left: 0, top: 140 }} />
-			<Dots className={classes.dots} style={{ right: 0, top: 60 }} />
+			<Dots className={classes.dots} style={{ right: 0, top: 180 }} />
 		</>
 	);
 
 	return (
-		<Container className={classes.wrapper} size={1300}>
+		<Container className={classes.wrapper}>
 			{showDots}
 			<div className={classes.inner}>
 				<Title className={classes.title}>
@@ -34,11 +34,16 @@ function Banner() {
 				</Container>
 
 				<div className={classes.controls}>
-					<Button className={classes.control} size='lg' variant='default' color='gray'>
+					<Button
+						component='a'
+						href='https://github.com/Saifurrahmanemon/Quizee'
+						target='_blank'
+						className={classes.control}
+						size='lg'
+						variant='default'
+						color='gray'
+					>
 						Source Code
-					</Button>
-					<Button className={classes.control} size='lg'>
-						Play Now
 					</Button>
 				</div>
 			</div>

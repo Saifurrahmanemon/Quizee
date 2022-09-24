@@ -1,7 +1,9 @@
 import { RequireAdmin, RequireAuth } from 'components/RequireAuth';
 import CreateQuizzes from 'pages/Admin/CreateQuizzes';
-import ManageUsers from 'pages/Admin/ManageUsers';
+import Dashboard from 'pages/Admin/Dashboard';
+import ManageQuizzes from 'pages/Admin/ManageQuizzes';
 import Home from 'pages/Home';
+import NotFound from 'pages/NotFound';
 import Payment from 'pages/Payment';
 import Quiz from 'pages/Quiz';
 import Quizzes from 'pages/Quizzes';
@@ -52,16 +54,29 @@ const Router = () => {
 			),
 		},
 		{
-			path: '/manageusers',
+			path: '/managequizzes',
 			element: (
 				<RequireAdmin>
-					<ManageUsers />
+					<ManageQuizzes />
+				</RequireAdmin>
+			),
+		},
+
+		{
+			path: '/dashboard',
+			element: (
+				<RequireAdmin>
+					<Dashboard />
 				</RequireAdmin>
 			),
 		},
 		{
 			path: '/register',
 			element: <AuthenticationForm />,
+		},
+		{
+			path: '*',
+			element: <NotFound />,
 		},
 		{
 			path: '/payment/:id',

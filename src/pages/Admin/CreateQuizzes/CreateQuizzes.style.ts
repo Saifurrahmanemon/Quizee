@@ -51,7 +51,7 @@ export const useStyles = createStyles((theme) => ({
 		borderWidth: '2px',
 		borderRadius: '2px',
 		borderStyle: 'dashed',
-		backgroundColor: '#fafafa',
+		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.gray[9] : '#fafafa',
 		color: '#bdbdbd',
 		outline: 'none',
 		transition: 'border 0.24s ease-in-out',

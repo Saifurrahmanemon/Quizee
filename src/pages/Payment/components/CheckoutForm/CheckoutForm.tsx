@@ -104,7 +104,6 @@ const CheckoutForm = ({ quiz }: CheckoutFormProps) => {
 				retakes: quiz?.retake,
 				transactionId: paymentIntent.id,
 			};
-			console.log('payment details', payment);
 
 			const res = await axios.patch(`/orders/${email}/${quiz?._id}`, payment);
 			if (res) {
@@ -123,6 +122,10 @@ const CheckoutForm = ({ quiz }: CheckoutFormProps) => {
 			opened={opened}
 			onClose={handleOnClose}
 			transition='fade'
+			centered
+			overlayOpacity={0.55}
+			size='lg'
+			overlayBlur={3}
 			transitionDuration={600}
 			transitionTimingFunction='ease'
 		>

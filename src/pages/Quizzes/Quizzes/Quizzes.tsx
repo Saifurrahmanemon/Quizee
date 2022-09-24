@@ -1,28 +1,16 @@
 import { Carousel } from '@mantine/carousel';
 import { Container, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import axiosPrivate from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
+import useQuizzes from 'hooks/useQuizzes';
 import { IQuiz } from 'pages/shared/types';
-import { useEffect, useState } from 'react';
 
 import QuizCard from '../QuizCard/QuizCard';
 
 function Quizzes() {
-	const [quizzes, setQuizzes] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const { quizzes, isLoading } = useQuizzes();
 
-	useEffect(() => {
-		setLoading(true);
-		const getQuizzes = async () => {
-			const res = await axiosPrivate.get('/quizzes');
-			if (res.status === 200) {
-				setQuizzes(res.data);
-			}
-			setLoading(false);
-		};
-		getQuizzes();
-	}, []);
+	console.log(quizzes);
 
 	const theme = useMantineTheme();
 	const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
@@ -35,7 +23,7 @@ function Quizzes() {
 
 	return (
 		<Container my={50}>
-			{loading ? (
+			{isLoading ? (
 				<Loading />
 			) : (
 				<Carousel

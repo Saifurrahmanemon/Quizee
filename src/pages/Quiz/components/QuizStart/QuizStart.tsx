@@ -7,6 +7,7 @@ type QuizStartProps = {
 };
 
 function QuizStart({ toShowAnswer, handleQuizStart, retakes: remainingRetakes }: QuizStartProps) {
+	console.log(toShowAnswer);
 	const isDisabled = remainingRetakes <= 0;
 	return (
 		<>

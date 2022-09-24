@@ -6,6 +6,7 @@ const quizzesScheme = mongoose.Schema({
 	img: String,
 	status: String,
 	retake: Number,
+	submissions: Number,
 	countDownType: String,
 	showAnswer: String,
 	price: Number,

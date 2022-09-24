@@ -7,6 +7,7 @@ const ordersScheme = mongoose.Schema(
 		quizName: String,
 		retakes: Number,
 		status: String,
+		refund: String,
 		lastScore: String,
 		paid: Boolean,
 		transactionId: String,

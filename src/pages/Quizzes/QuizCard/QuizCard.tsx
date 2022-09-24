@@ -1,4 +1,16 @@
-import { Badge, Button, Container, Group, Mark, Modal, Paper, Text, Title } from '@mantine/core';
+import {
+	Badge,
+	Button,
+	Center,
+	Container,
+	Group,
+	Mark,
+	Modal,
+	Paper,
+	Text,
+	Title,
+} from '@mantine/core';
+import { IconPlayerPlay } from '@tabler/icons';
 import auth from 'config/firebase.init';
 import useGetOrder from 'hooks/useGetOrder';
 import { IQuiz } from 'pages/shared/types';
@@ -66,7 +78,9 @@ function QuizCard({ item }: QuizCardProps) {
 			shadow='md'
 			p='xl'
 			radius='md'
-			sx={{ backgroundImage: `url(${item.img})` }}
+			sx={{
+				backgroundImage: `url(${item.img})`,
+			}}
 			className={classes.card}
 		>
 			{showModal}
@@ -82,6 +96,12 @@ function QuizCard({ item }: QuizCardProps) {
 				<Button onClick={() => handleOnClick(item._id)} variant='white' color='dark'>
 					Play Quiz
 				</Button>
+				<Center>
+					<IconPlayerPlay size={18} stroke={1.5} color='white' />
+					<Text size='md' className={classes.bodyText}>
+						{item.submissions}
+					</Text>
+				</Center>
 				<Badge size='lg' variant='gradient'>
 					{item.status}
 				</Badge>

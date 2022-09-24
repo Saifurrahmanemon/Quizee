@@ -46,8 +46,9 @@ function CreateQuizzes() {
 			img: '',
 			status: '',
 			retake: 0,
-			countDownType: '',
-			showAnswer: '',
+			submissions: 0,
+			countDownType: 'question',
+			showAnswer: 'afterQuestion',
 			price: 0,
 			time: 0,
 			quiz: [
@@ -88,7 +89,9 @@ function CreateQuizzes() {
 
 	const handleOnQuizCreate = async (values: ICreateQuizzes) => {
 		setLoading(true);
+		console.log('image', image);
 		values.img = image;
+		console.log(values.img);
 		values.quiz = questions;
 		const res = await axios.post(`/quizzes/${user?.email}`, values);
 
@@ -233,7 +236,7 @@ function CreateQuizzes() {
 								min={0}
 								required
 								placeholder='total or per quiz time in minute'
-								label='Time'
+								label='Time (Minute)'
 								{...form.getInputProps('time')}
 							/>
 						</div>

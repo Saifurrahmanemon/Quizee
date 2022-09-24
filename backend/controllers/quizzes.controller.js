@@ -17,3 +17,19 @@ module.exports.getAQuiz = asyncHandler(async (req, res) => {
 	const result = await Quizzes.findById(id);
 	res.status(200).json(result);
 });
+
+module.exports.updateAQuiz = asyncHandler(async (req, res) => {
+	const id = req.params.id;
+	const body = req.body;
+	const updateDoc = {
+		$set: body,
+	};
+	const result = await Quizzes.findByIdAndUpdate(id, updateDoc);
+	res.status(200).json(result);
+});
+
+module.exports.deleteAQuiz = asyncHandler(async (req, res) => {
+	const id = req.params.id;
+	const result = await Quizzes.findByIdAndDelete(id);
+	res.status(200).json(result);
+});

@@ -19,7 +19,7 @@ router.get('/', verifyJWT, quizzesController.getAllQuizzes);
  * @access private admin
  */
 
-router.post('/:email', verifyAdmin, quizzesController.postAQuiz);
+router.post('/:email', verifyJWT, verifyAdmin, quizzesController.postAQuiz);
 
 /**
  * @desc single quiz
@@ -27,6 +27,21 @@ router.post('/:email', verifyAdmin, quizzesController.postAQuiz);
  * @access private users
  */
 
-router.get('/:id', verifyJWT, quizzesController.getAQuiz);
+router
+	.route('/:id')
+	.get(verifyJWT, quizzesController.getAQuiz)
+	/**
+	 * @desc update a quiz info
+	 * @route put api/v1/quizzes
+	 * @access private users && admin
+	 */
+	.put(verifyJWT, quizzesController.updateAQuiz)
+
+	/**
+	 * @desc delete a quiz
+	 * @route delete api/v1/quizzes
+	 * @access private users && admin
+	 */
+	.delete(verifyJWT, verifyAdmin, quizzesController.deleteAQuiz);
 
 module.exports = router;

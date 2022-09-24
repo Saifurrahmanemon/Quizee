@@ -32,7 +32,7 @@ type FormProps = {
 	password: string;
 };
 
-interface LocationTypes {
+interface LocationType {
 	from: { pathname: string };
 	myState: string;
 }
@@ -45,12 +45,13 @@ function AuthenticationForm(props: PaperProps) {
 	const [updateProfile] = useUpdateProfile(auth);
 	const [signInWithEmailAndPassword, loginUser, loadingLogin, errorLogin] =
 		useSignInWithEmailAndPassword(auth);
+
 	const [token] = useToken(googleUser || signUpUser || loginUser);
 
 	const navigate = useNavigate();
 
 	// did not find type for this one in react router might see later
-	const myState = useLocation().state as LocationTypes;
+	const myState = useLocation().state as LocationType;
 	const from = myState?.from?.pathname || '/';
 
 	useEffect(() => {
@@ -78,13 +79,11 @@ function AuthenticationForm(props: PaperProps) {
 	});
 
 	const handleSignUpOnSubmit = async ({ name, password, email }: FormProps) => {
-		console.log('handle login is called');
 		await createUserWithEmailAndPassword(email, password);
 		await updateProfile({ displayName: name });
 	};
 
 	const handleLoginOnSubmit = async ({ email, password }: FormProps) => {
-		console.log('handle login is called');
 		await signInWithEmailAndPassword(email, password);
 	};
 
@@ -104,7 +103,7 @@ function AuthenticationForm(props: PaperProps) {
 	return (
 		<Container size={500} my={40}>
 			<Paper radius='md' p='xl' withBorder {...props}>
-				<Text size='lg' weight={500}>
+				<Text size='lg' weight={700}>
 					Welcome to Quizee, {type} with
 				</Text>
 

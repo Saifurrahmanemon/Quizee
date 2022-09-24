@@ -36,27 +36,24 @@ function DisplayQuiz({
 		);
 
 		return (
-			<>
-				<Checkbox
-					my='md'
-					disabled={isCheckboxDisabled}
-					mr={10}
-					key={`${option.value}_${idx}`}
-					label={showLabels}
-					value={option.value}
-				>
-					{option.label}
-				</Checkbox>
-			</>
+			<Checkbox
+				my='md'
+				disabled={isCheckboxDisabled}
+				mr={10}
+				key={`${option._id}_${idx}`}
+				label={showLabels}
+				value={option.value}
+			>
+				{option.label}
+			</Checkbox>
 		);
 	});
-
 	return (
-		<>
+		<div key={renderQuestion?._id}>
 			<Paper my={20} radius='md' p='md' withBorder>
 				<Text> {renderQuestion?.question}</Text>
 			</Paper>
-			<Text size='sm' color='gray' key={renderQuestion?._id} my={20}>
+			<Text size='sm' color='dimmed' my={20}>
 				Please chose your answer:
 			</Text>
 			<Checkbox.Group value={checkedValues} onChange={setCheckedValues}>
@@ -73,7 +70,7 @@ function DisplayQuiz({
 					Next
 				</Button>
 			</Group>
-		</>
+		</div>
 	);
 }
 

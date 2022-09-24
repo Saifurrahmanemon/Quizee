@@ -1,31 +1,33 @@
 import axios from 'api/AxiosPrivate';
 import Loading from 'components/Loading';
 import auth from 'config/firebase.init';
-import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import QuizzesTable from '../components/QuizzesTable';
+import { useStyles } from './Settings.style';
 
 function Settings() {
-	const [isLoading, setIsLoading] = useState(false);
-	const [paidQuizzes, setPaidQuizzes] = useState([]);
+	const { classes } = useStyles();
+
 	const [user] = useAuthState(auth);
 
-	console.log(paidQuizzes);
+	const getQuiz = async () => await axios.get(`/orders/${user?.email}`);
 
-	useEffect(() => {
-		setIsLoading(true);
-		const getQuiz = async () => {
-			const res = await axios.get(`/orders/${user?.email}`);
-			if (res.status === 200) {
-				setPaidQuizzes(res?.data);
-			}
-			setIsLoading(false);
-		};
+	const { data, isLoading, refetch } = useQuery(['orders'], getQuiz);
 
-		getQuiz();
-	}, []);
+	const emptyTable = <div className={classes.label}>You don&apos;t have any paid quiz</div>;
 
-	return <div>{isLoading ? <Loading /> : <QuizzesTable quizzes={paidQuizzes} />}</div>;
+	const isPaidQuizEmpty = data?.data?.length === 0;
+
+	const showQuizzesTable = isPaidQuizEmpty ? (
+		emptyTable
+	) : isLoading ? (
+		<Loading />
+	) : (
+		<QuizzesTable refetch={refetch} quizzes={data?.data} />
+	);
+
+	return <div>{showQuizzesTable}</div>;
 }
 
 export default Settings;

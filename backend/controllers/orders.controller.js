@@ -44,3 +44,15 @@ module.exports.updateAOrder = asyncHandler(async (req, res) => {
 	const result = await Orders.findOneAndUpdate(filter, payment, options);
 	res.send({ result });
 });
+
+module.exports.getPaidOrders = asyncHandler(async (req, res) => {
+	const filter = { paid: true };
+	const result = await Orders.find(filter);
+	res.send(result);
+});
+
+module.exports.getPaidUsers = asyncHandler(async (req, res) => {
+	const filter = { paid: true };
+	const result = await Orders.find(filter).distinct('email');
+	res.send(result);
+});
