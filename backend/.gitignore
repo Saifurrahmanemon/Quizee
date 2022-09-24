@@ -7,7 +7,7 @@
 .env
 yarn.lock
 package-lock.json
-
+/en.example
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

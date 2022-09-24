@@ -21,7 +21,7 @@ export const useStyles = createStyles((theme) => ({
 
 	td: {
 		fontFamily: theme.fontFamilyMonospace,
-		fontWeight: 600,
+		fontWeight: 500,
 	},
 	scrolled: {
 		boxShadow: theme.shadows.sm,
