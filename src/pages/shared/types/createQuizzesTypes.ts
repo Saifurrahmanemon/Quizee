@@ -15,8 +15,8 @@ export interface ICreateQuizzes {
 	status: string;
 	price?: number;
 	retake: number;
-	countDownType: string;
-	showAnswer: string;
+	countDownType?: 'question' | 'full';
+	showAnswer: 'afterQuestion' | 'afterSubmission' | 'afterRetakes';
 	time: number;
 	quiz: QuizType[];
 }

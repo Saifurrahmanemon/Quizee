@@ -7,7 +7,6 @@ type AdminProps = User | null | undefined;
 const useAdmin = (user: AdminProps) => {
 	const [admin, setAdmin] = useState(false);
 	const [adminLoading, setAdminLoading] = useState(true);
-
 	useEffect(() => {
 		const getAdmin = () => {
 			const email = user?.email;

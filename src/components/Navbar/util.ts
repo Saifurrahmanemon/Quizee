@@ -10,10 +10,6 @@ export const adminTabs = [
 		label: 'Home',
 	},
 	{
-		value: 'manageusers',
-		label: 'Manage Users',
-	},
-	{
 		value: 'createquizzes',
 		label: 'Create Quizzes',
 	},

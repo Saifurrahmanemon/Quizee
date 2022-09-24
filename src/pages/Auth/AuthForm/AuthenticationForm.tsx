@@ -46,7 +46,6 @@ function AuthenticationForm(props: PaperProps) {
 	const [signInWithEmailAndPassword, loginUser, loadingLogin, errorLogin] =
 		useSignInWithEmailAndPassword(auth);
 
-	console.log(signUpUser);
 	const [token] = useToken(googleUser || signUpUser || loginUser);
 
 	const navigate = useNavigate();
@@ -104,7 +103,7 @@ function AuthenticationForm(props: PaperProps) {
 	return (
 		<Container size={500} my={40}>
 			<Paper radius='md' p='xl' withBorder {...props}>
-				<Text size='lg' weight={500}>
+				<Text size='lg' weight={700}>
 					Welcome to Quizee, {type} with
 				</Text>
 

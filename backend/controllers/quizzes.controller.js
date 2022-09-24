@@ -29,5 +29,7 @@ module.exports.updateAQuiz = asyncHandler(async (req, res) => {
 });
 
 module.exports.deleteAQuiz = asyncHandler(async (req, res) => {
-	res.send('delete a quiz');
+	const id = req.params.id;
+	const result = await Quizzes.findByIdAndDelete(id);
+	res.status(200).json(result);
 });

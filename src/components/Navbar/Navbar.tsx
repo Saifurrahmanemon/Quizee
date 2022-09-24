@@ -60,7 +60,7 @@ function Navbar() {
 			<div className={classes.header}>
 				<Container className={classes.mainSection}>
 					<div className={classes.logoThemeContainer}>
-						<img src={QuizLogo} className={classes.logo} alt='' />
+						<img onClick={() => navigate('/home')} src={QuizLogo} className={classes.logo} alt='' />
 						<ToggleColorButton />
 					</div>
 					<Group position='apart'>

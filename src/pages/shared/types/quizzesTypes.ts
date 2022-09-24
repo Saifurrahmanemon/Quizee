@@ -2,7 +2,7 @@ import { ICreateQuizzes } from './createQuizzesTypes';
 
 export interface IQuiz extends ICreateQuizzes {
 	correct: string[] | [];
-	countDownType: string;
+	countDownType: 'question' | 'full';
 	submissions: number;
 	question: '';
 	_id: string;
@@ -10,5 +10,6 @@ export interface IQuiz extends ICreateQuizzes {
 	options: {
 		value: string;
 		label: string;
+		_id: string;
 	}[];
 }

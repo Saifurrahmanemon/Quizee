@@ -2,7 +2,8 @@ const Users = require('../model/usersModel');
 const asyncHandler = require('express-async-handler');
 
 const verifyAdmin = asyncHandler(async (req, res, next) => {
-	const requester = req.params.email;
+	const requester = req.decoded.email;
+	console.log(requester);
 
 	const account = await Users.findOne({
 		email: requester,

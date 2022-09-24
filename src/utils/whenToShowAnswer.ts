@@ -1,7 +1,7 @@
 const whenToShowAnswer = (answer: string | undefined) => {
 	switch (answer) {
 		case 'afterQuestion':
-			return 'Answers will be shown after Question';
+			return 'You can see answers per question';
 		case 'afterSubmission':
 			return 'Answers will be shown after Submission';
 		case 'afterRetakes':
