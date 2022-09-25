@@ -1,5 +1,4 @@
 /**
- * TODO: for you can choose multiple answers not single we can use radio for single answer and checkbox for multiple
  *
  * There are 3 types of showAnswer: 'after Question', 'after submission' , 'after Retakes
  * for after question user will have option to see answer after every quiz

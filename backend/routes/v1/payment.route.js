@@ -4,12 +4,12 @@ const verifyJWT = require('../../middleware/verifyJWT');
 const paymentController = require('../../controllers/payment.controller');
 
 router
-	.route('/')
-	/**
-	 * @desc post stripe payment
-	 * @route post api/v1/admins
-	 * @access private user
-	 */
-	.post(verifyJWT, paymentController.stripePay);
+  .route('/')
+  /**
+   * @desc post stripe payment
+   * @route post api/v1/admins
+   * @access private user
+   */
+  .post(verifyJWT, paymentController.stripePay);
 
 module.exports = router;

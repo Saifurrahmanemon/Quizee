@@ -26,12 +26,12 @@ app.use('/api/v1/create-payment-intent', paymentRoutes);
 
 // run server
 app.get('/', (req, res) => {
-	res.send('hello world');
+  res.send('hello world');
 });
 
 app.all('*', (req, res) => {
-	res.send('No Routes Found');
+  res.send('No Routes Found');
 });
 app.listen(port, () => {
-	console.log(`server is running on ${port}`);
+  console.log(`server is running on ${port}`);
 });

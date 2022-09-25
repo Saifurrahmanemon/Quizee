@@ -4,24 +4,24 @@ import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 function useUsers() {
-	const [users, setUsers] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [user] = useAuthState(auth);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [user] = useAuthState(auth);
 
-	useEffect(() => {
-		setLoading(true);
-		const getQuiz = async () => {
-			const res = await axios.get(`/users/${user?.email}`);
-			if (res.status === 200) {
-				setUsers(res.data);
-			}
-			setLoading(false);
-		};
+  useEffect(() => {
+    setLoading(true);
+    const getQuiz = async () => {
+      const res = await axios.get(`/users/${user?.email}`);
+      if (res.status === 200) {
+        setUsers(res.data);
+      }
+      setLoading(false);
+    };
 
-		getQuiz();
-	}, []);
+    getQuiz();
+  }, []);
 
-	return { users, loading };
+  return { users, loading };
 }
 
 export default useUsers;
