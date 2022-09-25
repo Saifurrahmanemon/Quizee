@@ -1,43 +1,35 @@
 # 💻 Application Overview
 
+The application is a bit hard to explain(I highly recommend playing with the app).
 
+Users can play ready-made quizzes and win exciting prizes. There are two types of quizzes free and paid. for paid quizzes, user has to pay a certain amount of money in order to access those quizzes and the user can ask for a refund if the user wants. Users also can manage all of their paid quizzes.
 
-https://user-images.githubusercontent.com/70877552/192110518-abbeaca0-f4cd-4b38-8a4f-209ce1bca049.mp4
-
-
-https://user-images.githubusercontent.com/70877552/192110514-2cbaca61-8a2b-4ab3-9fd3-ae38a892cf44.mp4
-
-
-The application is a bit hard explain(I highly reccomend to go and play with the app).
-
-Users can play ready made quizzes and won exciting prices. There are two types of quizzes free and paid. for paid quizzes, user have to pay certain amount of money in order to access those quiz and user can ask for refund if user wants. User also can manage all of there paid quiz.
-
-Quiz it self have some distinct features.
+The quiz itself has some distinct features.
 
 Every Quiz has 2 types of timing:
-A. Per question wise timing
-B. Whole quiz wise timing.
+A. Per question-wise timing
+B. Whole quiz-wise timing.
 
-For example, if admin choose per question based timing then he can set a fix time per question. All questions will have same time.Timing will reset for every new question.
+For example, if the admin chooses question-based timing then he can set a fixed time for a question. All questions will have the same time. Timing will reset for every new question.
 
-If admin choose Whole quiz wise time then timer will be based on entire quiz.
+If the admin chooses the whole quiz-wise time then the timer will be based on the entire quiz.
 
-If time is over all answer is auto submitted
+If time is over the answer is auto-submitted
 
-Admin can create quizzes(with distinct features will be discussed later),manage quizzes, manage users, make refund if he think user's refund application is valid and also can work with revenue data.
+Admin can create quizzes(with distinct features that will be discussed later), manage quizzes, manage users, make a refund if he thinks user's refund application is valid and also can work with revenue data.
 
 Quiz answers can be shown in 3 ways:
 A/ After Question
 B/ After submission
 C/ After all retakes
 
-for after all retakes type, user will have choice to see the answers but their retakes will become zero and won't be able play this quiz again.
+For 'after all retakes' types, users will have the choice to see the answers but their retakes will become zero and won't be able to play this quiz again.
 
-
+[Demo]('not available yet')
 
 ## Data model
 
-The application contains the following models:
+Application contains the following models:
 
 - User - can have one of these roles:
 
