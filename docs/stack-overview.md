@@ -2,10 +2,10 @@
 
 ### Frontend
 
-Instead using different packages for different purpose, this app use Mantine Packages for common functionality. Packages include Mantine hooks, Mantine Notification, Mantine carousel, and most importantly Mantine forms.
+Instead of using tons of random packages,app uses Mantine Packages for common functionality. Packages include Mantine hooks, Mantine Notification, Mantine carousel, and most importantly Mantine forms.
 [See docs](https://mantine.dev/pages/getting-started/)
 
-Besides here are some common stack used in this app.
+Besides, here are some common tech used in this app.
 
 - [React](https://reactjs.org/)
 - [Rect-testing-library](https://testing-library.com/docs/react-testing-library/intro)
