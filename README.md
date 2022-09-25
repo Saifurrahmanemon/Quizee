@@ -1,7 +1,6 @@
 # QUIZEE 🚀🚀
 
-
-Quizee is a free and open-source full-stack quiz application that lets users play free, paid quizzes and authorized admins can create, update, manage and calculate revenue inside an amazing dashboard. 💰💸
+[Quizee](https://quize-app-92944.web.app/) is a free and open-source full-stack quiz application that lets users play free, paid quizzes and authorized admins can create, update, manage and calculate revenue inside an amazing dashboard. 💰💸
 
 ## Introduction
 
