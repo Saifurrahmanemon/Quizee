@@ -14,9 +14,9 @@ Usage:
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
-	root: {
-		position: 'relative',
-	},
+  root: {
+    position: 'relative',
+  },
 }));
 
 // Example.tsx
@@ -24,7 +24,7 @@ export const useStyles = createStyles((theme) => ({
 import { useStyles } from './Example.style';
 
 function Example() {
-	const { classes } = useStyles();
-	return <div className={classes.root}></div>;
+  const { classes } = useStyles();
+  return <div className={classes.root}></div>;
 }
 ```

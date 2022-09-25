@@ -1,50 +1,50 @@
 {
-   "env": {
-      "browser": true,
-      "es2021": true,
-      "jest": true,
-      "node": true
-   },
-   "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
-   ],
-   "parser": "@typescript-eslint/parser",
-   "parserOptions": {
-      "ecmaFeatures": {
-         "jsx": true
-      },
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-   },
-   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
-   "rules": {
-      // suppress errors for missing 'import React' in files
-      "react/react-in-jsx-scope": "off",
-      // allow jsx syntax in js files (for next.js project)
-      "react/jsx-filename-extension": [
-         1,
-         {
-            "extensions": [".js", ".tsx", ".ts"]
-         }
-      ],
-      "camelcase": "error",
-      "spaced-comment": "error",
-      "quotes": ["error", "single"],
-      "no-duplicate-imports": "error",
-      "@typescript-eslint/no-var-requires": "off",
-      "no-restricted-imports": [
-         "error",
-         {
-            "patterns": ["/components/*/*"]
-         }
-      ]
-   },
-   "settings": {
-      "import/resolver": {
-         "typescript": {}
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "rules": {
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": "off",
+    // allow jsx syntax in js files (for next.js project)
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".tsx", ".ts"]
       }
-   }
+    ],
+    "camelcase": "error",
+    "spaced-comment": "error",
+    "quotes": ["error", "single"],
+    "no-duplicate-imports": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["/components/*/*"]
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 }

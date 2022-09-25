@@ -8,36 +8,36 @@ import { IQuiz } from 'pages/shared/types';
 import QuizCard from '../QuizCard/QuizCard';
 
 function Quizzes() {
-	const { quizzes, isLoading } = useQuizzes();
+  const { quizzes, isLoading } = useQuizzes();
 
-	console.log(quizzes);
+  console.log(quizzes);
 
-	const theme = useMantineTheme();
-	const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
+  const theme = useMantineTheme();
+  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
-	const slides = quizzes?.map((item: IQuiz) => (
-		<Carousel.Slide key={item._id}>
-			<QuizCard item={item} />
-		</Carousel.Slide>
-	));
+  const slides = quizzes?.map((item: IQuiz) => (
+    <Carousel.Slide key={item._id}>
+      <QuizCard item={item} />
+    </Carousel.Slide>
+  ));
 
-	return (
-		<Container my={50}>
-			{isLoading ? (
-				<Loading />
-			) : (
-				<Carousel
-					slideSize='33.333333%'
-					breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
-					slideGap='xl'
-					align='start'
-					slidesToScroll={mobile ? 1 : 3}
-				>
-					{slides}
-				</Carousel>
-			)}
-		</Container>
-	);
+  return (
+    <Container my={50}>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Carousel
+          slideSize='33.333333%'
+          breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
+          slideGap='xl'
+          align='start'
+          slidesToScroll={mobile ? 1 : 3}
+        >
+          {slides}
+        </Carousel>
+      )}
+    </Container>
+  );
 }
 
 export default Quizzes;

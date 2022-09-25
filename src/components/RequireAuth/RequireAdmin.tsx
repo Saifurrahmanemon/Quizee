@@ -8,24 +8,24 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate } from 'react-router-dom';
 
 type RequireAdminProps = {
-	children: JSX.Element;
+  children: JSX.Element;
 };
 export const RequireAdmin = ({ children }: RequireAdminProps) => {
-	const [user, loading] = useAuthState(auth);
-	const [admin, adminLoading] = useAdmin(user);
+  const [user, loading] = useAuthState(auth);
+  const [admin, adminLoading] = useAdmin(user);
 
-	if (loading || adminLoading) {
-		return <Loading />;
-	}
+  if (loading || adminLoading) {
+    return <Loading />;
+  }
 
-	if (user && !admin) {
-		showNotification({
-			title: 'Sorry!!!',
-			message: 'Only admins can see this page',
-			icon: <IconX />,
-		});
-		signOut(auth);
-		return <Navigate to='/register'></Navigate>;
-	}
-	return children;
+  if (user && !admin) {
+    showNotification({
+      title: 'Sorry!!!',
+      message: 'Only admins can see this page',
+      icon: <IconX />,
+    });
+    signOut(auth);
+    return <Navigate to='/register'></Navigate>;
+  }
+  return children;
 };
