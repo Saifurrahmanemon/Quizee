@@ -1,14 +1,18 @@
 # 💻 Application Overview
 
+https://user-images.githubusercontent.com/70877552/192136630-ea795124-d47b-4e65-b94f-26bc03ae2a7a.mp4
+
+https://user-images.githubusercontent.com/70877552/192136632-a25f3665-1350-4daf-9f86-4ed1e7988d5f.mp4
+
 The application is a bit hard to explain(I highly recommend playing with the app).
 
 Users can play ready-made quizzes and win exciting prizes. There are two types of quizzes free and paid. for paid quizzes, user has to pay a certain amount of money in order to access those quizzes and the user can ask for a refund if the user wants. Users also can manage all of their paid quizzes.
 
 The quiz itself has some distinct features.
 
-Every Quiz has 2 types of timing:
-A. Per question-wise timing
-B. Whole quiz-wise timing.
+Every Quiz has 2 types of timing: <br>
+A. Per question-wise timing. <br>
+B. Whole quiz-wise timing.<br>
 
 For example, if the admin chooses question-based timing then he can set a fixed time for a question. All questions will have the same time. Timing will reset for every new question.
 
@@ -18,14 +22,12 @@ If time is over the answer is auto-submitted
 
 Admin can create quizzes(with distinct features that will be discussed later), manage quizzes, manage users, make a refund if he thinks user's refund application is valid and also can work with revenue data.
 
-Quiz answers can be shown in 3 ways:
-A/ After Question
-B/ After submission
-C/ After all retakes
+Quiz answers can be shown in 3 ways: <br>
+A/ After Question.<br>
+B/ After submission.<br>
+C/ After all retakes. <br>
 
 For 'after all retakes' types, users will have the choice to see the answers but their retakes will become zero and won't be able to play this quiz again.
-
-[Demo]('not available yet')
 
 ## Data model
 
