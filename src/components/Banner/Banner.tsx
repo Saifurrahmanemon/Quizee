@@ -28,8 +28,8 @@ function Banner() {
 
         <Container p={0} size={600}>
           <Text size='lg' color='dimmed' className={classes.description}>
-            Quizee is a free and open-source quiz application that lets you play fully
-            customized quizzes right in the browser.
+            Quizee is a free and open-source quiz application that lets you play fully customized
+            quizzes right in the browser.
           </Text>
         </Container>
 
