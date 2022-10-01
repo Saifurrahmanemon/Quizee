@@ -18,7 +18,7 @@ function Banner() {
     <Container className={classes.wrapper}>
       {showDots}
       <div className={classes.inner}>
-        <Title className={classes.title}>
+        <Title data-cy='home-title' className={classes.title}>
           Free and{' '}
           <Text component='span' className={classes.highlight} inherit>
             Open Source
@@ -42,6 +42,7 @@ function Banner() {
             size='lg'
             variant='default'
             color='gray'
+            data-cy='open-source-code'
           >
             Source Code
           </Button>

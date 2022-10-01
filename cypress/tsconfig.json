@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["node", "cypress"]
+  },
+  "files": ["global.d.ts"],
+  "include": ["**/*.ts"]
+}
