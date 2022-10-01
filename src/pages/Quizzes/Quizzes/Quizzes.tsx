@@ -10,8 +10,6 @@ import QuizCard from '../QuizCard/QuizCard';
 function Quizzes() {
   const { quizzes, isLoading } = useQuizzes();
 
-  console.log(quizzes);
-
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 

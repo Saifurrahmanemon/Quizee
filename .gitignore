@@ -6,11 +6,14 @@
 .pnp.js
 /backend/node_modules
 .env
+/cypress/e2e/.advanced-examples
+/cypress/e2e/.getting-started
 # testing
 /coverage
 
 # production
 /build
+
 
 # misc
 .DS_Store
