@@ -4,7 +4,7 @@
 
 ## Introduction
 
-The goal of this project(Development in progress) is to get familiar with professional workflow and good practices when developing real world applications. The project architecture is partially based on [Bulletproof React](https://github.com/alan2207/bulletproof-react) and [Trunk-Based Development](https://trunkbaseddevelopment.com/#scaled-trunk-based-development)
+The goal of this project(Development in progress) is to get familiar with professional workflow and good practices when developing real world applications. The project architecture is partially based on [Bulletproof React](https://github.com/alan2207/bulletproof-react).
 
 Feel free to explore the codebase to get the most value out of the repo.
 
