@@ -2,7 +2,7 @@
 
 #### Component library:
 
-- [Mantine UI](https://mantine.dev/) - This application use Mantine UI for styling. Mantine UI is based on [emotion](https://emotion.sh/docs/introduction). And for almost all of the components style(if styles is not small), it uses createStyles to separate styles from markup.[Reference](https://mantine.dev/styles/create-styles/)
+- [Mantine UI](https://mantine.dev/) - This application use Mantine UI for styling. Mantine UI is based on [emotion](https://emotion.sh/docs/introduction). And for almost all of the components style(if styles is not small), it uses createStyles to separate styles from main Component.[Reference](https://mantine.dev/styles/create-styles/)
 
 [Example](../src/pages/Admin/CreateQuizzes/CreateQuizzes.style.ts)
 
